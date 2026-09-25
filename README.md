@@ -27,7 +27,7 @@ Travel Guru is a responsive travel website designed to help users explore destin
 
 ## 🌐 Live Demo
 
-[Visit Travel Guru](PASTE-YOUR-GITHUB-PAGES-LINK-HERE)
+[Visit Travel Guru](https://yadavshubhamsy3006-code.github.io/travel-guru/)
 
 ## 📌 Project
 
