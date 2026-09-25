@@ -1,0 +1,6927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TravelGuru.com | Explore India</title>
+
+<style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7fb;
+    color:#222;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 7%;
+
+    background:rgba(255,255,255,.96);
+
+    box-shadow:0 5px 25px rgba(0,0,0,.1);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#ff5722;
+}
+
+.logo span{
+    color:#222;
+}
+
+.nav-links a{
+    margin-left:25px;
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+}
+
+.nav-links a:hover{
+    color:#ff5722;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:680px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+
+    padding:70px 20px;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.58),
+        rgba(0,0,0,.58)
+    ),
+    url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1900&q=90");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    width:100%;
+    max-width:950px;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(10px);
+
+    margin-bottom:20px;
+
+    font-weight:bold;
+}
+
+.hero h1{
+    font-size:64px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#ffc107;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.7;
+
+    max-width:750px;
+
+    margin:0 auto 35px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-area{
+    position:relative;
+
+    max-width:850px;
+
+    margin:auto;
+}
+
+.search-box{
+
+    display:flex;
+
+    background:white;
+
+    padding:8px;
+
+    border-radius:50px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.35);
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    padding:18px 25px;
+
+    font-size:16px;
+
+    border-radius:50px;
+}
+
+.search-box button{
+
+    border:none;
+
+    padding:15px 28px;
+
+    border-radius:40px;
+
+    background:#ff5722;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    background:#e64a19;
+}
+
+/* =========================
+   AUTOCOMPLETE
+========================= */
+
+.suggestions{
+
+    position:absolute;
+
+    top:72px;
+
+    left:0;
+    right:0;
+
+    background:white;
+
+    color:#222;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    text-align:left;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    z-index:2000;
+}
+
+.suggestion{
+
+    padding:16px 20px;
+
+    border-bottom:1px solid #eee;
+
+    cursor:pointer;
+}
+
+.suggestion:hover{
+    background:#fff4ef;
+}
+
+.suggestion strong{
+    color:#ff5722;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+    padding:85px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.section-title p{
+    color:#777;
+    line-height:1.6;
+}
+
+/* =========================
+   CITY SELECT
+========================= */
+
+.city-container{
+    max-width:700px;
+    margin:auto;
+}
+
+.city-container select{
+
+    width:100%;
+
+    padding:18px;
+
+    border:1px solid #ddd;
+
+    border-radius:15px;
+
+    background:white;
+
+    font-size:17px;
+
+    outline:none;
+
+    box-shadow:
+        0 7px 25px rgba(0,0,0,.08);
+}
+
+/* =========================
+   PLACE GRID
+========================= */
+
+.place-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(290px,1fr));
+
+    gap:28px;
+}
+
+/* =========================
+   PLACE CARD
+========================= */
+
+.place-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.place-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.16);
+}
+
+.place-image-wrapper{
+
+    position:relative;
+
+    height:235px;
+
+    background:#ddd;
+
+    overflow:hidden;
+}
+
+.place-image{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.loading-image{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    height:100%;
+
+    color:#777;
+
+    font-weight:bold;
+}
+
+.place-number{
+
+    position:absolute;
+
+    top:15px;
+    left:15px;
+
+    background:#ff5722;
+
+    color:white;
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+}
+
+.photo-credit{
+
+    position:absolute;
+
+    bottom:5px;
+    left:8px;
+
+    right:8px;
+
+    color:white;
+
+    font-size:10px;
+
+    text-shadow:
+        0 1px 4px black;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+}
+
+.place-info{
+
+    padding:22px;
+}
+
+.place-info h3{
+
+    font-size:21px;
+
+    margin-bottom:10px;
+}
+
+.place-info p{
+
+    color:#666;
+
+    line-height:1.6;
+
+    margin-bottom:15px;
+}
+
+.tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-bottom:18px;
+}
+
+.tag{
+
+    padding:7px 11px;
+
+    border-radius:20px;
+
+    background:#fff1eb;
+
+    color:#ff5722;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+.buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+}
+
+.btn{
+
+    border:none;
+
+    padding:10px 13px;
+
+    border-radius:9px;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.btn:hover{
+    opacity:.85;
+}
+
+.guide-btn{
+    background:#4361ee;
+}
+
+.ride-btn{
+    background:#00a878;
+}
+
+.food-btn{
+    background:#ff9800;
+}
+
+.maps-btn{
+    background:#555;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+}
+
+.feature{
+
+    background:white;
+
+    padding:32px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 7px 25px rgba(0,0,0,.07);
+}
+
+.feature-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.feature h3{
+    margin-bottom:10px;
+}
+
+.feature p{
+    color:#666;
+    line-height:1.6;
+}
+
+/* =========================
+   POPUP
+========================= */
+
+.popup{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    background:rgba(0,0,0,.75);
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.popup-box{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:760px;
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+}
+
+.close{
+
+    position:absolute;
+
+    top:10px;
+    right:20px;
+
+    font-size:34px;
+
+    color:#777;
+
+    cursor:pointer;
+}
+
+.close:hover{
+    color:#ff5722;
+}
+
+/* =========================
+   GUIDE
+========================= */
+
+.guide-main-image{
+
+    width:100%;
+
+    height:300px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    margin:20px 0;
+}
+
+.guide-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(150px,1fr));
+
+    gap:15px;
+
+    margin:20px 0;
+}
+
+.info-box{
+
+    background:#f5f7fb;
+
+    padding:18px;
+
+    border-radius:12px;
+}
+
+.info-box strong{
+
+    display:block;
+
+    color:#ff5722;
+
+    margin-bottom:7px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.form-group label{
+
+    display:block;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #ddd;
+
+    border-radius:9px;
+
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:90px;
+}
+
+.vehicle-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+}
+
+.vehicle{
+
+    padding:15px;
+
+    border:2px solid #ddd;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    cursor:pointer;
+}
+
+.vehicle:hover{
+    border-color:#00a878;
+}
+
+.price-box{
+
+    text-align:center;
+
+    background:#fff5df;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin:20px 0;
+}
+
+.price-box strong{
+
+    display:block;
+
+    color:#00a878;
+
+    font-size:36px;
+
+    margin:8px;
+}
+
+.submit-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#ff5722;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+/* =========================
+   
+FOOD
+========================= */
+
+.food-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:25px;
+}
+
+.food-card{
+
+    background:#f5f7fb;
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:15px;
+}
+
+.food-card button{
+
+    border:none;
+
+    margin-top:15px;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    background:#ff5722;
+
+    color:white;
+
+    cursor:pointer;
+}
+
+.food-result{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:#fff5e5;
+
+    line-height:1.7;
+}
+
+.food-result a{
+
+    display:inline-block;
+
+    margin-top:12px;
+
+    padding:12px 18px;
+
+    background:#4285f4;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    background:#171717;
+
+    color:white;
+
+    text-align:center;
+
+    padding:60px 20px;
+}
+
+footer h2{
+
+    color:#ff7043;
+
+    margin-bottom:15px;
+}
+
+footer p{
+
+    color:#bbb;
+
+    margin:8px;
+}
+
+.wishes{
+
+    margin-top:25px;
+
+    color:#ffc107;
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   RIDE COMPARISON
+========================= */
+.location-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:15px;
+}
+.location-option{
+    border:2px solid #e3e6ed;
+    border-radius:14px;
+    padding:14px;
+    background:#fff;
+    cursor:pointer;
+    transition:.2s;
+}
+.location-option.active{
+    border-color:#00a878;
+    background:#effff9;
+}
+.location-option input{margin-right:7px}
+.location-help{
+    font-size:13px;
+    color:#777;
+    margin-top:7px;
+    line-height:1.5;
+}
+.ride-actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:16px;
+}
+.ride-service{
+    border:1px solid #e4e7ec;
+    border-radius:14px;
+    padding:14px;
+    background:#fff;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+.ride-service.best{
+    border:2px solid #00a878;
+    background:#f1fff9;
+}
+.ride-service h4{margin-bottom:6px}
+.ride-fare{
+    font-size:22px;
+    font-weight:800;
+    margin:8px 0;
+}
+.ride-service small{color:#777;line-height:1.5}
+.service-btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    padding:10px;
+    border-radius:9px;
+    margin-top:10px;
+    font-weight:bold;
+}
+.rapido{background:#ffcc00;color:#111}
+.ola{background:#111}
+.uber{background:#000}
+.gps-btn{
+    background:#00a878;
+    color:white;
+    border:none;
+    padding:11px 14px;
+    border-radius:9px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
+}
+.manual-btn{
+    background:#4361ee;
+    color:white;
+    border:none;
+    padding:11px 14px;
+    border-radius:9px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
+}
+.compare-note{
+    background:#f5f7fb;
+    padding:14px;
+    border-radius:12px;
+    margin-top:15px;
+    line-height:1.6;
+    font-size:14px;
+}
+@media(max-width:700px){
+    .location-options,
+    .ride-actions{
+        grid-template-columns:1fr;
+    }
+}
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:15px;
+    }
+
+    .nav-links a{
+
+        margin:0 7px;
+
+        font-size:14px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:17px;
+    }
+
+    .search-box{
+
+        flex-direction:column;
+
+        border-radius:18px;
+    }
+
+    .search-box button{
+        border-radius:10px;
+    }
+
+    .food-grid,
+    .vehicle-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+
+<style id="travelguru-enhancements">
+.feature-section{max-width:1180px;margin:40px auto;padding:28px;border-radius:24px;background:rgba(255,255,255,.92);box-shadow:0 14px 40px rgba(0,0,0,.08)}
+.section-heading{text-align:center;margin-bottom:22px}.section-heading h2{font-size:30px;margin:7px 0}.section-heading p{color:#64748b}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:1.5px;color:#0f766e}
+.stay-actions,.food-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.stay-actions .btn,.food-service{min-height:54px;border:0;border-radius:14px;padding:12px 16px;cursor:pointer;font-weight:700}
+.food-service{background:#f1f5f9;color:#0f172a}.food-service:hover{transform:translateY(-2px)}
+.stay-result,.guide-card,.food-service-card{margin-top:20px}.stay-card{display:flex;gap:18px;align-items:center;padding:22px;border-radius:18px;background:#f8fafc}
+.stay-icon{font-size:42px}.stay-card h3,.guide-card h3,.food-service-card h3{margin:0 0 8px}
+.empty-feature{padding:30px;text-align:center;color:#64748b;background:#f8fafc;border-radius:16px}
+.guide-card{padding:24px;border-radius:18px;background:#f8fafc}.guide-card li{margin:8px 0}
+.food-service-card{padding:24px;border-radius:18px;background:#f8fafc}.small-note{font-size:12px;color:#64748b;margin-top:14px}
+.guide-btn{margin-top:8px}
+@media(max-width:600px){.feature-section{margin:22px 12px;padding:20px}.section-heading h2{font-size:24px}.stay-card{align-items:flex-start}}
+</style>
+
+
+<style id="guide-fix-css">
+.guide-header h2{margin:6px 0;font-size:30px}.guide-header p{color:#64748b}.guide-image-box{height:320px;margin:18px 0;border-radius:18px;overflow:hidden;background:#e2e8f0}.guide-main-image{width:100%;height:100%;object-fit:cover;display:block}.guide-history{line-height:1.8}.guide-history h3{margin:18px 0 8px}.guide-tips{line-height:1.9;margin-top:10px}.guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.photo-credit{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;padding:4px 8px;border-radius:8px;font-size:11px}.place-image-wrapper{position:relative;overflow:hidden}.place-image{width:100%;height:100%;object-fit:cover;display:block}.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}.info-box{padding:14px;border-radius:14px;background:#f8fafc}@media(max-width:600px){.guide-grid{grid-template-columns:1fr}.guide-image-box{height:240px}}
+</style>
+
+<style id="guide-working-fix">
+#guidePopup{z-index:99999 !important;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;}
+#guidePopup .popup-box{display:block;width:min(900px,96vw);max-height:92vh;overflow-y:auto;position:relative;}
+#guideContent{width:100%;}#guideContent .guide-main-image{display:block;width:100%;height:300px;object-fit:cover;border-radius:18px;}
+#guideContent .guide-header h2{margin:8px 0 4px;}
+#guideContent .guide-history{margin:18px 0;padding:20px;border-radius:16px;background:#f8fafc;line-height:1.7;}
+#guideContent .guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;}
+#guideContent .info-box{padding:16px;border-radius:14px;background:#eef2ff;}
+#guideContent .guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+@media(max-width:600px){#guidePopup{padding:10px;}#guidePopup .popup-box{max-height:94vh;}#guideContent .guide-main-image{height:220px;}#guideContent .guide-grid{grid-template-columns:1fr;}}
+</style>
+<style id="stay-fix-css">
+.stay-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:1000px;margin:0 auto;}
+.stay-actions .btn{background:#0f766e;color:#fff;border:none;min-height:54px;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;}
+.stay-actions .btn:hover{transform:translateY(-2px);opacity:.92;}
+.stay-result{max-width:1000px;margin:24px auto 0;}
+.stay-card{display:flex;align-items:center;gap:20px;padding:24px;background:#fff;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,.08);}
+.stay-icon{font-size:46px;flex:none;}
+.stay-card h3{margin:0 0 8px;font-size:22px;}
+.stay-card p{color:#666;line-height:1.6;margin-bottom:14px;}
+.stay-card a{display:inline-block;text-decoration:none;}
+.empty-feature{padding:28px;text-align:center;background:#fff;border-radius:16px;color:#64748b;}
+@media(max-width:700px){.stay-actions{grid-template-columns:1fr 1fr;}.stay-card{align-items:flex-start;}.stay-icon{font-size:36px;}}
+@media(max-width:450px){.stay-actions{grid-template-columns:1fr;}}
+</style>
+
+<style id="stay-fix-final">
+#stay {
+    display: block !important;
+    position: relative;
+    z-index: 2;
+}
+
+.stay-actions {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.stay-actions button {
+    min-height: 58px;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    border: 0;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.stay-result {
+    display: block !important;
+    min-height: 80px;
+    margin-top: 22px;
+}
+
+.stay-result-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    width: 100%;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.08);
+    box-sizing: border-box;
+}
+
+.stay-result-icon {
+    width: 76px;
+    height: 76px;
+    flex: 0 0 76px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: #f1f5f9;
+    font-size: 38px;
+}
+
+.stay-result-content {
+    flex: 1;
+}
+
+.stay-result-content h3 {
+    margin: 5px 0 8px;
+    font-size: 26px;
+}
+
+.stay-result-content p {
+    margin: 7px 0;
+    line-height: 1.55;
+    color: #475569;
+}
+
+.stay-badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    font-weight: 900;
+    color: #0f766e;
+}
+
+.stay-result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.stay-result-actions a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stay-note {
+    font-size: 12px !important;
+    color: #64748b !important;
+}
+
+.stay-error {
+    padding: 20px;
+    border-radius: 15px;
+    background: #fff7ed;
+    color: #9a3412;
+    text-align: center;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .stay-result-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .stay-result-icon {
+        width: 62px;
+        height: 62px;
+        flex-basis: 62px;
+        font-size: 30px;
+    }
+
+    .stay-result-content h3 {
+        font-size: 22px;
+    }
+
+    .stay-result-actions {
+        width: 100%;
+    }
+
+    .stay-result-actions a {
+        width: 100%;
+    }
+}
+</style>
+
+
+<style id="india-coverage-banner">
+.india-coverage-banner{
+  max-width:700px;
+  margin:12px auto 0;
+  text-align:center;
+  font-size:13px;
+  font-weight:800;
+  color:#64748b;
+}
+.photo-credit{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  z-index:4;
+  padding:5px 8px;
+  border-radius:8px;
+  background:rgba(0,0,0,.62);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+}
+.place-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Travel<span>Guru.com</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#home">Home</a>
+
+        <a href="#places">Places</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#stay">Stay</a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🇮🇳 Discover Incredible India
+        </div>
+
+        <h1>
+            Welcome to
+            <span>TravelGuru.com</span>
+        </h1>
+
+        <p>
+
+            Explore India's most beautiful destinations,
+            discover real places, get travel guides,
+            find nearby food and book your ride —
+            all from one beautiful travel website.
+
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-area">
+
+            <div class="search-box">
+
+                <input
+
+                    id="searchInput"
+
+                    type="text"
+
+                    placeholder="Search any city or place in India..."
+
+                    autocomplete="off"
+
+                    oninput="searchSuggestions()"
+
+                    onkeydown="searchEnter(event)"
+
+                >
+
+                <button onclick="performSearch()">
+
+                    🔎 Search
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="suggestions"
+                class="suggestions">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CITY
+===================================================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🗺️ Choose Your City
+        </h2>
+
+        <p>
+            Select a city and discover its 15 best places.
+        </p>
+
+    </div>
+
+
+    <div class="city-container">
+
+        <select
+            id="citySelect"
+            onchange="cityChanged()"></select>
+<div class="india-coverage-banner">🇮🇳 36 regions • 15 beautiful places each • 540 destinations</div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PLACES
+===================================================== -->
+
+<section
+    class="section"
+    id="places">
+
+    <div class="section-title">
+
+        <h2 id="placesTitle">
+            🌏 Explore India
+        </h2>
+
+        <p id="placesSubtitle">
+
+            Choose a city to discover its best destinations.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="placeGrid"
+        class="place-grid">
+
+        <div
+            style="
+                grid-column:1/-1;
+                text-align:center;
+                background:white;
+                padding:60px;
+                border-radius:20px;
+            ">
+
+            <h2>
+                ✈️ Your Journey Starts Here
+            </h2>
+
+            <p style="
+                margin-top:12px;
+                color:#777;
+            ">
+
+                Select a city above to explore
+                India's beautiful destinations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section
+    class="section"
+    id="features">
+
+    <div class="section-title">
+
+        <h2>
+            ✨ Everything For Your Journey
+        </h2>
+
+        <p>
+            TravelGuru.com brings your travel planning
+            tools together.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📸
+            </div>
+
+            <h3>
+                Real Place Photos
+            </h3>
+
+            <p>
+                Photos are loaded from Google Places
+                for the actual destination.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📖
+            </div>
+
+            <h3>
+                Travel Guide
+            </h3>
+
+            <p>
+                See what to do and minimum time
+                needed for each destination.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🚕
+            </div>
+
+            <h3>
+                Book a Ride
+            </h3>
+
+            <p>
+                Select your vehicle and see an
+                estimated travel price.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🍔
+            </div>
+
+            <h3>
+                Nearby Food
+            </h3>
+
+            <p>
+                Find cheap, moderate and premium
+                restaurants near your location.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STAY SECTION
+===================================================== -->
+<section class="section" id="stay">
+  <div class="section-title">
+    <h2>🏨 Find Your Stay</h2>
+    <p>Find hotels, dharamshalas, PGs and rooms near your selected place or city.</p>
+  </div>
+  <div class="stay-actions">
+    <button type="button" class="btn primary-btn" onclick="findStay('hotel')">🏨 Hotels</button>
+    <button type="button" class="btn" onclick="findStay('dharamshala')">🛕 Dharamshalas</button>
+    <button type="button" class="btn" onclick="findStay('pg')">🏠 PG / Rooms</button>
+    <button type="button" class="btn" onclick="findStay('budget')">💰 Budget Stay</button>
+  </div>
+  <div id="stayResult" class="stay-result">
+    <div class="empty-feature">Select a stay option to find nearby places.</div>
+  </div>
+</section>
+
+<!-- =====================================================
+     GUIDE POPUP
+===================================================== -->
+
+<div
+    class="popup"
+    id="guidePopup">
+
+    <div class="popup-box">
+
+        <span
+            class="close"
+            onclick="closeGuidePopup()">
+
+            &times;
+
+        </span>
+
+
+        <div id="guideContent"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     RIDE POPUP
+===================================================== -->
+<div class="popup" id="ridePopup">
+    <div class="popup-box">
+        <span class="close" onclick="closePopup('ridePopup')">&times;</span>
+
+        <h2>🚕 Compare & Book Your Ride</h2>
+        <p style="color:#777;margin:10px 0 20px;">
+            Compare estimated fares and then open Rapido, Ola or Uber to confirm the live price.
+        </p>
+
+        <form onsubmit="submitRide(event)">
+            <div class="form-group">
+                <label>Passenger Name</label>
+                <input id="passengerName" type="text" required placeholder="Enter your name">
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input id="passengerPhone" type="tel" required pattern="[0-9]{10}" placeholder="10 digit mobile number">
+            </div>
+
+            <div class="form-group">
+                <label>Number of Passengers</label>
+                <input id="passengerCount" type="number" min="1" max="10" value="1" onchange="updateRideComparison()" required>
+            </div>
+
+            <div class="form-group">
+                <label>Travel Date</label>
+                <input id="travelDate" type="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Destination</label>
+                <input id="ridePlace" type="text" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Pickup Location</label>
+
+                <div class="location-options">
+                    <label class="location-option active" id="gpsOption">
+                        <input type="radio" name="pickupMode" value="gps" checked onchange="setPickupMode('gps')">
+                        📍 Use Current GPS
+                        <div class="location-help">Allow browser location permission and use your current position.</div>
+                    </label>
+
+                    <label class="location-option" id="manualOption">
+                        <input type="radio" name="pickupMode" value="manual" onchange="setPickupMode('manual')">
+                        ✍️ Enter Manually
+                        <div class="location-help">Type your pickup area, hotel, station or landmark.</div>
+                    </label>
+                </div>
+
+                <input id="pickupLocation" type="text" placeholder="Your current location will appear here">
+                <button type="button" class="gps-btn" onclick="useCurrentLocation()">📍 Detect My Current Location</button>
+                <div id="locationStatus" class="location-help">GPS is selected. Click the button above to detect your location.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Select Vehicle</label>
+                <div class="vehicle-grid">
+                    <label class="vehicle">
+                        <input type="radio" name="vehicle" value="auto" checked onchange="updateRideComparison()">
+                        🛺 Auto
+                    </label>
+                    <label class="vehicle">
+                        <input type="radio" name="vehicle" value="sedan" onchange="updateRideComparison()">
+                        🚗 Sedan
+                    </label>
+                    <label class="vehicle">
+                        <input type="radio" name="vehicle" value="suv" onchange="updateRideComparison()">
+                        🚙 SUV
+                    </label>
+                </div>
+            </div>
+
+            <div class="price-box">
+                <div>Estimated Travel Distance</div>
+                <strong id="rideDistance">--</strong>
+                <span id="priceDescription">Use GPS or enter a pickup location.</span>
+            </div>
+
+            <div id="rideComparison" class="ride-actions"></div>
+
+            <div class="compare-note">
+                💡 <strong>How cheapest works:</strong> TravelGuru cannot read live Rapido/Ola/Uber fares directly from their apps without their private/live booking APIs. The cards below are only <strong>planning estimates</strong>. Tap each service and compare the live fare shown by the app; choose the lowest suitable option.
+            </div>
+
+            <div class="form-group" style="margin-top:18px;">
+                <label>Additional Message</label>
+                <textarea id="rideMessage" placeholder="Any special request"></textarea>
+            </div>
+
+            <button class="submit-btn" type="submit">📱 Send Ride Details on WhatsApp</button>
+        </form>
+    </div>
+</div>
+<!-- =====================================================
+     FOOD POPUP
+===================================================== -->
+
+<div
+    class="popup"
+    id="foodPopup">
+
+    <div class="popup-box">
+
+        <span
+            class="close"
+            onclick="closePopup('foodPopup')">
+
+            &times;
+
+        </span>
+
+
+        <h2>
+            🍔 Find Food Nearby
+        </h2>
+
+
+        <p
+            id="foodText"
+            style="
+                color:#777;
+                margin:10px 0 20px;
+            ">
+        </p>
+
+
+        <button
+            class="btn food-btn"
+            onclick="captureLocation()">
+
+            📍 Capture My Location
+
+        </button>
+
+
+        <div class="food-grid">
+
+
+            <div class="food-card">
+
+                <h3>
+                    💰 Cheap
+                </h3>
+
+                <p>
+                    Budget-friendly restaurants
+                </p>
+
+                <button
+                    onclick="findFood('cheap')">
+
+                    Find Food
+
+                </button>
+
+            </div>
+
+
+            <div class="food-card">
+
+                <h3>
+                    🟡 Moderate
+                </h3>
+
+                <p>
+                    Popular restaurants
+                </p>
+
+                <button
+                    onclick="findFood('moderate')">
+
+                    Find Food
+
+                </button>
+
+            </div>
+
+
+            <div class="food-card">
+
+                <h3>
+                    💎 Premium
+                </h3>
+
+                <p>
+                    Premium restaurants
+                </p>
+
+                <button
+                    onclick="findFood('premium')">
+
+                    Find Food
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            id="foodResult"
+            class="food-result">
+
+            📍 Capture your location to find
+            restaurants near you.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <h2>
+        TravelGuru.com
+    </h2>
+
+    <p>
+        Explore • Experience • Enjoy
+    </p>
+
+    <p>
+        🇮🇳 Discover the beauty of India
+    </p>
+
+    <p>
+        Ride Assistance:
+        +91 xxxxxxx100
+    </p>
+
+
+    <div class="wishes">
+
+        🌸 Happy Journey & Best Wishes 🌸
+
+        <br>
+
+        Keep Exploring • Keep Smiling • Keep Travelling
+
+        <br>
+
+        — Shubham
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     GOOGLE MAPS API
+     
+     IMPORTANT:
+     Replace YOUR_GOOGLE_MAPS_API_KEY
+     with your real Google Maps API key.
+===================================================== -->
+
+<script>
+
+const GOOGLE_MAPS_API_KEY =
+    ""; // Optional: add your Google Maps Platform key for extra live place data.
+
+
+/* Load Google Maps dynamically */
+
+function loadGoogleMaps(){
+
+    return new Promise(function(resolve,reject){
+
+        if(
+            window.google &&
+            google.maps
+        ){
+
+            resolve();
+
+            return;
+        }
+
+
+        const script =
+            document.createElement("script");
+
+
+        script.src =
+            "https://maps.googleapis.com/maps/api/js?key=" +
+            encodeURIComponent(
+                GOOGLE_MAPS_API_KEY
+            ) +
+            "&v=weekly";
+
+
+        script.async = true;
+
+        script.defer = true;
+
+
+        script.onload =
+            function(){
+
+                resolve();
+
+            };
+
+
+        script.onerror =
+            function(){
+
+                reject(
+                    new Error(
+                        "Google Maps failed to load."
+                    )
+                );
+
+            };
+
+
+        document.head.appendChild(
+            script
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   CITY / PLACE DATA
+===================================================== */
+
+const cities = {
+  "Andhra Pradesh": [
+    [
+      "Visakhapatnam",
+      "Explore Visakhapatnam, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Araku Valley",
+      "Explore Araku Valley, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Tirupati",
+      "Explore Tirupati, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Vijayawada",
+      "Explore Vijayawada, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Amaravati",
+      "Explore Amaravati, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Lepakshi",
+      "Explore Lepakshi, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Gandikota",
+      "Explore Gandikota, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Horsley Hills",
+      "Explore Horsley Hills, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Srisailam",
+      "Explore Srisailam, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kakinada",
+      "Explore Kakinada, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Rajahmundry",
+      "Explore Rajahmundry, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Machilipatnam",
+      "Explore Machilipatnam, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Nagarjuna Sagar",
+      "Explore Nagarjuna Sagar, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Papikondalu",
+      "Explore Papikondalu, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Belum Caves",
+      "Explore Belum Caves, a memorable destination in Andhra Pradesh.",
+      "2-4 hours"
+    ]
+  ],
+  "Arunachal Pradesh": [
+    [
+      "Tawang",
+      "Explore Tawang, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Ziro Valley",
+      "Explore Ziro Valley, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Bomdila",
+      "Explore Bomdila, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Dirang",
+      "Explore Dirang, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Sela Pass",
+      "Explore Sela Pass, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Itanagar",
+      "Explore Itanagar, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Namdapha National Park",
+      "Explore Namdapha National Park, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Mechuka",
+      "Explore Mechuka, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Bhalukpong",
+      "Explore Bhalukpong, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Pasighat",
+      "Explore Pasighat, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Roing",
+      "Explore Roing, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Daporijo",
+      "Explore Daporijo, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Along",
+      "Explore Along, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Nacho",
+      "Explore Nacho, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Mayudia Pass",
+      "Explore Mayudia Pass, a memorable destination in Arunachal Pradesh.",
+      "2-4 hours"
+    ]
+  ],
+  "Assam": [
+    [
+      "Guwahati",
+      "Explore Guwahati, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Kaziranga National Park",
+      "Explore Kaziranga National Park, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Majuli",
+      "Explore Majuli, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Sivasagar",
+      "Explore Sivasagar, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Manas National Park",
+      "Explore Manas National Park, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Tezpur",
+      "Explore Tezpur, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Jorhat",
+      "Explore Jorhat, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Dibrugarh",
+      "Explore Dibrugarh, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Haflong",
+      "Explore Haflong, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Hajo",
+      "Explore Hajo, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Pobitora Wildlife Sanctuary",
+      "Explore Pobitora Wildlife Sanctuary, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Nameri National Park",
+      "Explore Nameri National Park, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Digboi",
+      "Explore Digboi, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Dhemaji",
+      "Explore Dhemaji, a memorable destination in Assam.",
+      "2-4 hours"
+    ],
+    [
+      "Silchar",
+      "Explore Silchar, a memorable destination in Assam.",
+      "2-4 hours"
+    ]
+  ],
+  "Bihar": [
+    [
+      "Bodh Gaya",
+      "Explore Bodh Gaya, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Nalanda",
+      "Explore Nalanda, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Rajgir",
+      "Explore Rajgir, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Patna",
+      "Explore Patna, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Vaishali",
+      "Explore Vaishali, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Pawapuri",
+      "Explore Pawapuri, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Valmiki National Park",
+      "Explore Valmiki National Park, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Madhubani",
+      "Explore Madhubani, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Gaya",
+      "Explore Gaya, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Kesaria Stupa",
+      "Explore Kesaria Stupa, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Vikramshila",
+      "Explore Vikramshila, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Sasaram",
+      "Explore Sasaram, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Barabar Caves",
+      "Explore Barabar Caves, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Munger",
+      "Explore Munger, a memorable destination in Bihar.",
+      "2-4 hours"
+    ],
+    [
+      "Darbhanga",
+      "Explore Darbhanga, a memorable destination in Bihar.",
+      "2-4 hours"
+    ]
+  ],
+  "Chhattisgarh": [
+    [
+      "Raipur",
+      "Explore Raipur, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Jagdalpur",
+      "Explore Jagdalpur, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Chitrakote Falls",
+      "Explore Chitrakote Falls, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Tirathgarh Falls",
+      "Explore Tirathgarh Falls, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Barnawapara Wildlife Sanctuary",
+      "Explore Barnawapara Wildlife Sanctuary, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Kanger Valley National Park",
+      "Explore Kanger Valley National Park, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Mainpat",
+      "Explore Mainpat, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Sirpur",
+      "Explore Sirpur, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Bhoramdeo Temple",
+      "Explore Bhoramdeo Temple, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Dongargarh",
+      "Explore Dongargarh, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Amarkantak",
+      "Explore Amarkantak, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Dantewada",
+      "Explore Dantewada, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Kawardha",
+      "Explore Kawardha, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Bastar",
+      "Explore Bastar, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ],
+    [
+      "Rajim",
+      "Explore Rajim, a memorable destination in Chhattisgarh.",
+      "2-4 hours"
+    ]
+  ],
+  "Goa": [
+    [
+      "Panaji",
+      "Explore Panaji, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Calangute Beach",
+      "Explore Calangute Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Baga Beach",
+      "Explore Baga Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Anjuna Beach",
+      "Explore Anjuna Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Palolem Beach",
+      "Explore Palolem Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Dudhsagar Falls",
+      "Explore Dudhsagar Falls, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Fort Aguada",
+      "Explore Fort Aguada, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Basilica of Bom Jesus",
+      "Explore Basilica of Bom Jesus, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Old Goa",
+      "Explore Old Goa, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Vagator Beach",
+      "Explore Vagator Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Colva Beach",
+      "Explore Colva Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Candolim Beach",
+      "Explore Candolim Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Chapora Fort",
+      "Explore Chapora Fort, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Morjim Beach",
+      "Explore Morjim Beach, a memorable destination in Goa.",
+      "2-4 hours"
+    ],
+    [
+      "Panjim Latin Quarter",
+      "Explore Panjim Latin Quarter, a memorable destination in Goa.",
+      "2-4 hours"
+    ]
+  ],
+  "Gujarat": [
+    [
+      "Ahmedabad",
+      "Explore Ahmedabad, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Statue of Unity",
+      "Explore Statue of Unity, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Rann of Kutch",
+      "Explore Rann of Kutch, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Dwarka",
+      "Explore Dwarka, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Somnath",
+      "Explore Somnath, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Gir National Park",
+      "Explore Gir National Park, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Diu",
+      "Explore Diu, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Saputara",
+      "Explore Saputara, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Champaner-Pavagadh",
+      "Explore Champaner-Pavagadh, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Modhera Sun Temple",
+      "Explore Modhera Sun Temple, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Junagadh",
+      "Explore Junagadh, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Bhuj",
+      "Explore Bhuj, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Vadodara",
+      "Explore Vadodara, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Lothal",
+      "Explore Lothal, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ],
+    [
+      "Dholavira",
+      "Explore Dholavira, a memorable destination in Gujarat.",
+      "2-4 hours"
+    ]
+  ],
+  "Haryana": [
+    [
+      "Gurugram",
+      "Explore Gurugram, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Kurukshetra",
+      "Explore Kurukshetra, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Panchkula",
+      "Explore Panchkula, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Morni Hills",
+      "Explore Morni Hills, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Pinjore Gardens",
+      "Explore Pinjore Gardens, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Faridabad",
+      "Explore Faridabad, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Sultanpur National Park",
+      "Explore Sultanpur National Park, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Surajkund",
+      "Explore Surajkund, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Panipat",
+      "Explore Panipat, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Karnal",
+      "Explore Karnal, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Hisar",
+      "Explore Hisar, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Ambala",
+      "Explore Ambala, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Thanesar",
+      "Explore Thanesar, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Sohna",
+      "Explore Sohna, a memorable destination in Haryana.",
+      "2-4 hours"
+    ],
+    [
+      "Narnaul",
+      "Explore Narnaul, a memorable destination in Haryana.",
+      "2-4 hours"
+    ]
+  ],
+  "Himachal Pradesh": [
+    [
+      "Shimla",
+      "Explore Shimla, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Manali",
+      "Explore Manali, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Dharamshala",
+      "Explore Dharamshala, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "McLeod Ganj",
+      "Explore McLeod Ganj, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kasol",
+      "Explore Kasol, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kullu",
+      "Explore Kullu, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Spiti Valley",
+      "Explore Spiti Valley, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Dalhousie",
+      "Explore Dalhousie, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kasauli",
+      "Explore Kasauli, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Chitkul",
+      "Explore Chitkul, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kinnaur",
+      "Explore Kinnaur, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Khajjiar",
+      "Explore Khajjiar, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Bir Billing",
+      "Explore Bir Billing, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Tirthan Valley",
+      "Explore Tirthan Valley, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Rohtang Pass",
+      "Explore Rohtang Pass, a memorable destination in Himachal Pradesh.",
+      "2-4 hours"
+    ]
+  ],
+  "Jharkhand": [
+    [
+      "Ranchi",
+      "Explore Ranchi, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Netarhat",
+      "Explore Netarhat, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Deoghar",
+      "Explore Deoghar, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Jamshedpur",
+      "Explore Jamshedpur, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Hazaribagh",
+      "Explore Hazaribagh, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Betla National Park",
+      "Explore Betla National Park, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Dassam Falls",
+      "Explore Dassam Falls, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Hundru Falls",
+      "Explore Hundru Falls, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Jonha Falls",
+      "Explore Jonha Falls, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Parasnath Hill",
+      "Explore Parasnath Hill, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Patratu Valley",
+      "Explore Patratu Valley, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Tagore Hill",
+      "Explore Tagore Hill, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Jagannath Temple Ranchi",
+      "Explore Jagannath Temple Ranchi, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Maithon Dam",
+      "Explore Maithon Dam, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ],
+    [
+      "Bokaro",
+      "Explore Bokaro, a memorable destination in Jharkhand.",
+      "2-4 hours"
+    ]
+  ],
+  "Karnataka": [
+    [
+      "Bengaluru",
+      "Explore Bengaluru, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Mysuru",
+      "Explore Mysuru, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Hampi",
+      "Explore Hampi, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Coorg",
+      "Explore Coorg, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Chikmagalur",
+      "Explore Chikmagalur, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Gokarna",
+      "Explore Gokarna, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Udupi",
+      "Explore Udupi, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Badami",
+      "Explore Badami, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Hassan",
+      "Explore Hassan, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Kabini",
+      "Explore Kabini, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Jog Falls",
+      "Explore Jog Falls, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Murudeshwar",
+      "Explore Murudeshwar, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Dandeli",
+      "Explore Dandeli, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Nandi Hills",
+      "Explore Nandi Hills, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ],
+    [
+      "Belur",
+      "Explore Belur, a memorable destination in Karnataka.",
+      "2-4 hours"
+    ]
+  ],
+  "Kerala": [
+    [
+      "Kochi",
+      "Explore Kochi, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Munnar",
+      "Explore Munnar, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Alappuzha",
+      "Explore Alappuzha, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Thekkady",
+      "Explore Thekkady, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Wayanad",
+      "Explore Wayanad, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Varkala",
+      "Explore Varkala, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Kovalam",
+      "Explore Kovalam, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Kumarakom",
+      "Explore Kumarakom, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Kozhikode",
+      "Explore Kozhikode, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Thrissur",
+      "Explore Thrissur, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Vagamon",
+      "Explore Vagamon, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Bekal",
+      "Explore Bekal, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Athirappilly Falls",
+      "Explore Athirappilly Falls, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Marari Beach",
+      "Explore Marari Beach, a memorable destination in Kerala.",
+      "2-4 hours"
+    ],
+    [
+      "Fort Kochi",
+      "Explore Fort Kochi, a memorable destination in Kerala.",
+      "2-4 hours"
+    ]
+  ],
+  "Madhya Pradesh": [
+    [
+      "Bhopal",
+      "Explore Bhopal, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Indore",
+      "Explore Indore, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Ujjain",
+      "Explore Ujjain, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Gwalior",
+      "Explore Gwalior, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Khajuraho",
+      "Explore Khajuraho, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Pachmarhi",
+      "Explore Pachmarhi, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Orchha",
+      "Explore Orchha, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Mandu",
+      "Explore Mandu, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Sanchi",
+      "Explore Sanchi, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Jabalpur",
+      "Explore Jabalpur, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kanha National Park",
+      "Explore Kanha National Park, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Bandhavgarh National Park",
+      "Explore Bandhavgarh National Park, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Pench National Park",
+      "Explore Pench National Park, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Maheshwar",
+      "Explore Maheshwar, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Omkareshwar",
+      "Explore Omkareshwar, a memorable destination in Madhya Pradesh.",
+      "2-4 hours"
+    ]
+  ],
+  "Maharashtra": [
+    [
+      "Mumbai",
+      "Explore Mumbai, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Pune",
+      "Explore Pune, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Lonavala",
+      "Explore Lonavala, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Mahabaleshwar",
+      "Explore Mahabaleshwar, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Nashik",
+      "Explore Nashik, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Aurangabad",
+      "Explore Aurangabad, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Ajanta Caves",
+      "Explore Ajanta Caves, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Ellora Caves",
+      "Explore Ellora Caves, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Alibaug",
+      "Explore Alibaug, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Matheran",
+      "Explore Matheran, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Kolhapur",
+      "Explore Kolhapur, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Shirdi",
+      "Explore Shirdi, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Tadoba National Park",
+      "Explore Tadoba National Park, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Ratnagiri",
+      "Explore Ratnagiri, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ],
+    [
+      "Sindhudurg",
+      "Explore Sindhudurg, a memorable destination in Maharashtra.",
+      "2-4 hours"
+    ]
+  ],
+  "Manipur": [
+    [
+      "Imphal",
+      "Explore Imphal, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Loktak Lake",
+      "Explore Loktak Lake, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Kangla Fort",
+      "Explore Kangla Fort, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Keibul Lamjao National Park",
+      "Explore Keibul Lamjao National Park, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Ukhrul",
+      "Explore Ukhrul, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Moreh",
+      "Explore Moreh, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Shirui Hills",
+      "Explore Shirui Hills, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Andro",
+      "Explore Andro, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Moirang",
+      "Explore Moirang, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Thoubal",
+      "Explore Thoubal, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Bishnupur",
+      "Explore Bishnupur, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Dzuko Valley",
+      "Explore Dzuko Valley, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Sendra",
+      "Explore Sendra, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Khongjom",
+      "Explore Khongjom, a memorable destination in Manipur.",
+      "2-4 hours"
+    ],
+    [
+      "Tamenglong",
+      "Explore Tamenglong, a memorable destination in Manipur.",
+      "2-4 hours"
+    ]
+  ],
+  "Meghalaya": [
+    [
+      "Shillong",
+      "Explore Shillong, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Cherrapunji",
+      "Explore Cherrapunji, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Mawsynram",
+      "Explore Mawsynram, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Dawki",
+      "Explore Dawki, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Nongriat",
+      "Explore Nongriat, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Mawlynnong",
+      "Explore Mawlynnong, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Jowai",
+      "Explore Jowai, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Laitlum Canyon",
+      "Explore Laitlum Canyon, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Nongpoh",
+      "Explore Nongpoh, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Nartiang",
+      "Explore Nartiang, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Mawphlang",
+      "Explore Mawphlang, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Umiam Lake",
+      "Explore Umiam Lake, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Kyllang Rock",
+      "Explore Kyllang Rock, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Sohra",
+      "Explore Sohra, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ],
+    [
+      "Shnongpdeng",
+      "Explore Shnongpdeng, a memorable destination in Meghalaya.",
+      "2-4 hours"
+    ]
+  ],
+  "Mizoram": [
+    [
+      "Aizawl",
+      "Explore Aizawl, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Lunglei",
+      "Explore Lunglei, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Champhai",
+      "Explore Champhai, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Reiek",
+      "Explore Reiek, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Phawngpui National Park",
+      "Explore Phawngpui National Park, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Serchhip",
+      "Explore Serchhip, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Hmuifang",
+      "Explore Hmuifang, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Vantawng Falls",
+      "Explore Vantawng Falls, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Durtlang Hills",
+      "Explore Durtlang Hills, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Thenzawl",
+      "Explore Thenzawl, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Mamit",
+      "Explore Mamit, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Saitual",
+      "Explore Saitual, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Kolasib",
+      "Explore Kolasib, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Lawngtlai",
+      "Explore Lawngtlai, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ],
+    [
+      "Saiha",
+      "Explore Saiha, a memorable destination in Mizoram.",
+      "2-4 hours"
+    ]
+  ],
+  "Nagaland": [
+    [
+      "Kohima",
+      "Explore Kohima, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Dzukou Valley",
+      "Explore Dzukou Valley, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Dimapur",
+      "Explore Dimapur, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Mokokchung",
+      "Explore Mokokchung, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Mon",
+      "Explore Mon, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Khonoma",
+      "Explore Khonoma, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Wokha",
+      "Explore Wokha, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Tuensang",
+      "Explore Tuensang, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Phek",
+      "Explore Phek, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Kisama Heritage Village",
+      "Explore Kisama Heritage Village, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Japfu Peak",
+      "Explore Japfu Peak, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Intangki National Park",
+      "Explore Intangki National Park, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Longwa",
+      "Explore Longwa, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Pfutsero",
+      "Explore Pfutsero, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ],
+    [
+      "Tseminyu",
+      "Explore Tseminyu, a memorable destination in Nagaland.",
+      "2-4 hours"
+    ]
+  ],
+  "Odisha": [
+    [
+      "Bhubaneswar",
+      "Explore Bhubaneswar, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Puri",
+      "Explore Puri, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Konark",
+      "Explore Konark, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Chilika Lake",
+      "Explore Chilika Lake, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Cuttack",
+      "Explore Cuttack, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Gopalpur",
+      "Explore Gopalpur, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Bhitarkanika National Park",
+      "Explore Bhitarkanika National Park, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Simlipal National Park",
+      "Explore Simlipal National Park, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Daringbadi",
+      "Explore Daringbadi, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Raghurajpur",
+      "Explore Raghurajpur, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Barbil",
+      "Explore Barbil, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Jeypore",
+      "Explore Jeypore, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Udayagiri Caves",
+      "Explore Udayagiri Caves, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Dhauli",
+      "Explore Dhauli, a memorable destination in Odisha.",
+      "2-4 hours"
+    ],
+    [
+      "Chandipur",
+      "Explore Chandipur, a memorable destination in Odisha.",
+      "2-4 hours"
+    ]
+  ],
+  "Punjab": [
+    [
+      "Amritsar",
+      "Explore Amritsar, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Golden Temple",
+      "Explore Golden Temple, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Wagah Border",
+      "Explore Wagah Border, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Anandpur Sahib",
+      "Explore Anandpur Sahib, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Ludhiana",
+      "Explore Ludhiana, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Patiala",
+      "Explore Patiala, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Jalandhar",
+      "Explore Jalandhar, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Bathinda",
+      "Explore Bathinda, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Pathankot",
+      "Explore Pathankot, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Ropar",
+      "Explore Ropar, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Harike Wetland",
+      "Explore Harike Wetland, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Kapurthala",
+      "Explore Kapurthala, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Gurdaspur",
+      "Explore Gurdaspur, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Fatehgarh Sahib",
+      "Explore Fatehgarh Sahib, a memorable destination in Punjab.",
+      "2-4 hours"
+    ],
+    [
+      "Qila Mubarak",
+      "Explore Qila Mubarak, a memorable destination in Punjab.",
+      "2-4 hours"
+    ]
+  ],
+  "Rajasthan": [
+    [
+      "Jaipur",
+      "Explore Jaipur, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Udaipur",
+      "Explore Udaipur, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Jodhpur",
+      "Explore Jodhpur, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Jaisalmer",
+      "Explore Jaisalmer, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Pushkar",
+      "Explore Pushkar, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Mount Abu",
+      "Explore Mount Abu, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Ajmer",
+      "Explore Ajmer, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Bikaner",
+      "Explore Bikaner, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Ranthambore",
+      "Explore Ranthambore, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Chittorgarh",
+      "Explore Chittorgarh, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Bundi",
+      "Explore Bundi, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Kumbhalgarh",
+      "Explore Kumbhalgarh, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Alwar",
+      "Explore Alwar, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Mandawa",
+      "Explore Mandawa, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ],
+    [
+      "Osian",
+      "Explore Osian, a memorable destination in Rajasthan.",
+      "2-4 hours"
+    ]
+  ],
+  "Sikkim": [
+    [
+      "Gangtok",
+      "Explore Gangtok, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Pelling",
+      "Explore Pelling, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Namchi",
+      "Explore Namchi, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Lachung",
+      "Explore Lachung, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Lachen",
+      "Explore Lachen, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Nathula Pass",
+      "Explore Nathula Pass, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Tsomgo Lake",
+      "Explore Tsomgo Lake, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Yuksom",
+      "Explore Yuksom, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Ravangla",
+      "Explore Ravangla, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Zuluk",
+      "Explore Zuluk, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Yumthang Valley",
+      "Explore Yumthang Valley, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Khecheopalri Lake",
+      "Explore Khecheopalri Lake, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Rinchenpong",
+      "Explore Rinchenpong, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Aritar",
+      "Explore Aritar, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ],
+    [
+      "Temi",
+      "Explore Temi, a memorable destination in Sikkim.",
+      "2-4 hours"
+    ]
+  ],
+  "Tamil Nadu": [
+    [
+      "Chennai",
+      "Explore Chennai, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Ooty",
+      "Explore Ooty, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Kodaikanal",
+      "Explore Kodaikanal, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Madurai",
+      "Explore Madurai, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Rameswaram",
+      "Explore Rameswaram, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Kanyakumari",
+      "Explore Kanyakumari, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Thanjavur",
+      "Explore Thanjavur, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Mahabalipuram",
+      "Explore Mahabalipuram, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Pondicherry",
+      "Explore Pondicherry, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Coimbatore",
+      "Explore Coimbatore, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Coonoor",
+      "Explore Coonoor, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Yercaud",
+      "Explore Yercaud, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Kumbakonam",
+      "Explore Kumbakonam, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Kanchipuram",
+      "Explore Kanchipuram, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ],
+    [
+      "Rameshwaram",
+      "Explore Rameshwaram, a memorable destination in Tamil Nadu.",
+      "2-4 hours"
+    ]
+  ],
+  "Telangana": [
+    [
+      "Hyderabad",
+      "Explore Hyderabad, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Warangal",
+      "Explore Warangal, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Charminar",
+      "Explore Charminar, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Golconda Fort",
+      "Explore Golconda Fort, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Hussain Sagar",
+      "Explore Hussain Sagar, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Nagarjuna Sagar",
+      "Explore Nagarjuna Sagar, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Bhongir",
+      "Explore Bhongir, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Ramappa Temple",
+      "Explore Ramappa Temple, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Medak",
+      "Explore Medak, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Nizamabad",
+      "Explore Nizamabad, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Adilabad",
+      "Explore Adilabad, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Basara",
+      "Explore Basara, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Vikarabad",
+      "Explore Vikarabad, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Ananthagiri Hills",
+      "Explore Ananthagiri Hills, a memorable destination in Telangana.",
+      "2-4 hours"
+    ],
+    [
+      "Kuntala Falls",
+      "Explore Kuntala Falls, a memorable destination in Telangana.",
+      "2-4 hours"
+    ]
+  ],
+  "Tripura": [
+    [
+      "Agartala",
+      "Explore Agartala, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Ujjayanta Palace",
+      "Explore Ujjayanta Palace, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Neermahal",
+      "Explore Neermahal, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Unakoti",
+      "Explore Unakoti, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Jampui Hills",
+      "Explore Jampui Hills, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Sepahijala Wildlife Sanctuary",
+      "Explore Sepahijala Wildlife Sanctuary, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Tripura Sundari Temple",
+      "Explore Tripura Sundari Temple, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Dumboor Lake",
+      "Explore Dumboor Lake, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Pilak",
+      "Explore Pilak, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Melaghar",
+      "Explore Melaghar, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Kamalasagar",
+      "Explore Kamalasagar, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Rowa Wildlife Sanctuary",
+      "Explore Rowa Wildlife Sanctuary, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Jirania",
+      "Explore Jirania, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Dharmanagar",
+      "Explore Dharmanagar, a memorable destination in Tripura.",
+      "2-4 hours"
+    ],
+    [
+      "Kailashahar",
+      "Explore Kailashahar, a memorable destination in Tripura.",
+      "2-4 hours"
+    ]
+  ],
+  "Uttar Pradesh": [
+    [
+      "Agra",
+      "Explore Agra, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Varanasi",
+      "Explore Varanasi, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Ayodhya",
+      "Explore Ayodhya, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Lucknow",
+      "Explore Lucknow, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Mathura",
+      "Explore Mathura, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Vrindavan",
+      "Explore Vrindavan, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Prayagraj",
+      "Explore Prayagraj, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Jhansi",
+      "Explore Jhansi, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Chitrakoot",
+      "Explore Chitrakoot, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Sarnath",
+      "Explore Sarnath, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Fatehpur Sikri",
+      "Explore Fatehpur Sikri, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Dudhwa National Park",
+      "Explore Dudhwa National Park, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kushinagar",
+      "Explore Kushinagar, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Kanpur",
+      "Explore Kanpur, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ],
+    [
+      "Meerut",
+      "Explore Meerut, a memorable destination in Uttar Pradesh.",
+      "2-4 hours"
+    ]
+  ],
+  "Uttarakhand": [
+    [
+      "Dehradun",
+      "Explore Dehradun, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Mussoorie",
+      "Explore Mussoorie, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Nainital",
+      "Explore Nainital, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Rishikesh",
+      "Explore Rishikesh, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Haridwar",
+      "Explore Haridwar, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Kedarnath",
+      "Explore Kedarnath, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Badrinath",
+      "Explore Badrinath, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Auli",
+      "Explore Auli, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Jim Corbett National Park",
+      "Explore Jim Corbett National Park, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Almora",
+      "Explore Almora, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Ranikhet",
+      "Explore Ranikhet, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Kausani",
+      "Explore Kausani, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Lansdowne",
+      "Explore Lansdowne, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Valley of Flowers",
+      "Explore Valley of Flowers, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ],
+    [
+      "Chopta",
+      "Explore Chopta, a memorable destination in Uttarakhand.",
+      "2-4 hours"
+    ]
+  ],
+  "West Bengal": [
+    [
+      "Kolkata",
+      "Explore Kolkata, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Darjeeling",
+      "Explore Darjeeling, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Kalimpong",
+      "Explore Kalimpong, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Siliguri",
+      "Explore Siliguri, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Digha",
+      "Explore Digha, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Sundarbans",
+      "Explore Sundarbans, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Shantiniketan",
+      "Explore Shantiniketan, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Murshidabad",
+      "Explore Murshidabad, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Dooars",
+      "Explore Dooars, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Bishnupur",
+      "Explore Bishnupur, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Cooch Behar",
+      "Explore Cooch Behar, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Jaldapara National Park",
+      "Explore Jaldapara National Park, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Mirik",
+      "Explore Mirik, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Gangasagar",
+      "Explore Gangasagar, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ],
+    [
+      "Mayapur",
+      "Explore Mayapur, a memorable destination in West Bengal.",
+      "2-4 hours"
+    ]
+  ],
+  "Delhi": [
+    [
+      "India Gate",
+      "Explore India Gate, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Red Fort",
+      "Explore Red Fort, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Qutub Minar",
+      "Explore Qutub Minar, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Humayun's Tomb",
+      "Explore Humayun's Tomb, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Lotus Temple",
+      "Explore Lotus Temple, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Akshardham Temple",
+      "Explore Akshardham Temple, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Jama Masjid",
+      "Explore Jama Masjid, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Chandni Chowk",
+      "Explore Chandni Chowk, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Lodhi Garden",
+      "Explore Lodhi Garden, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Connaught Place",
+      "Explore Connaught Place, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "National Museum",
+      "Explore National Museum, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Raj Ghat",
+      "Explore Raj Ghat, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Purana Qila",
+      "Explore Purana Qila, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Hauz Khas",
+      "Explore Hauz Khas, a memorable destination in Delhi.",
+      "2-4 hours"
+    ],
+    [
+      "Agrasen ki Baoli",
+      "Explore Agrasen ki Baoli, a memorable destination in Delhi.",
+      "2-4 hours"
+    ]
+  ],
+  "Jammu and Kashmir": [
+    [
+      "Srinagar",
+      "Explore Srinagar, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Gulmarg",
+      "Explore Gulmarg, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Pahalgam",
+      "Explore Pahalgam, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Sonamarg",
+      "Explore Sonamarg, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Jammu",
+      "Explore Jammu, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Vaishno Devi",
+      "Explore Vaishno Devi, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Doodhpathri",
+      "Explore Doodhpathri, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Yusmarg",
+      "Explore Yusmarg, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Aru Valley",
+      "Explore Aru Valley, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Dal Lake",
+      "Explore Dal Lake, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Mughal Gardens",
+      "Explore Mughal Gardens, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Patnitop",
+      "Explore Patnitop, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Dachigam National Park",
+      "Explore Dachigam National Park, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Betaab Valley",
+      "Explore Betaab Valley, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ],
+    [
+      "Aharbal",
+      "Explore Aharbal, a memorable destination in Jammu and Kashmir.",
+      "2-4 hours"
+    ]
+  ],
+  "Ladakh": [
+    [
+      "Leh",
+      "Explore Leh, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Nubra Valley",
+      "Explore Nubra Valley, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Pangong Lake",
+      "Explore Pangong Lake, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Tso Moriri",
+      "Explore Tso Moriri, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Khardung La",
+      "Explore Khardung La, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Magnetic Hill",
+      "Explore Magnetic Hill, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Shanti Stupa",
+      "Explore Shanti Stupa, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Thiksey Monastery",
+      "Explore Thiksey Monastery, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Hemis Monastery",
+      "Explore Hemis Monastery, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Alchi Monastery",
+      "Explore Alchi Monastery, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Lamayuru",
+      "Explore Lamayuru, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Diskit",
+      "Explore Diskit, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Zanskar Valley",
+      "Explore Zanskar Valley, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Hanle",
+      "Explore Hanle, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ],
+    [
+      "Kargil",
+      "Explore Kargil, a memorable destination in Ladakh.",
+      "2-4 hours"
+    ]
+  ],
+  "Chandigarh": [
+    [
+      "Sukhna Lake",
+      "Explore Sukhna Lake, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Rock Garden",
+      "Explore Rock Garden, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Rose Garden",
+      "Explore Rose Garden, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Capitol Complex",
+      "Explore Capitol Complex, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Elante Mall",
+      "Explore Elante Mall, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Le Corbusier Centre",
+      "Explore Le Corbusier Centre, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Japanese Garden",
+      "Explore Japanese Garden, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Terraced Garden",
+      "Explore Terraced Garden, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Zakir Hussain Rose Garden",
+      "Explore Zakir Hussain Rose Garden, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Pinjore Gardens",
+      "Explore Pinjore Gardens, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Government Museum",
+      "Explore Government Museum, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Sector 17 Plaza",
+      "Explore Sector 17 Plaza, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Open Hand Monument",
+      "Explore Open Hand Monument, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Cactus Garden",
+      "Explore Cactus Garden, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ],
+    [
+      "Sukhna Wildlife Sanctuary",
+      "Explore Sukhna Wildlife Sanctuary, a memorable destination in Chandigarh.",
+      "2-4 hours"
+    ]
+  ],
+  "Andaman and Nicobar Islands": [
+    [
+      "Sri Vijaya Puram",
+      "Explore Sri Vijaya Puram, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Havelock Island",
+      "Explore Havelock Island, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Radhanagar Beach",
+      "Explore Radhanagar Beach, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Neil Island",
+      "Explore Neil Island, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Cellular Jail",
+      "Explore Cellular Jail, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Ross Island",
+      "Explore Ross Island, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Baratang Island",
+      "Explore Baratang Island, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Elephant Beach",
+      "Explore Elephant Beach, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "North Bay Island",
+      "Explore North Bay Island, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Chidiya Tapu",
+      "Explore Chidiya Tapu, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Bharatpur Beach",
+      "Explore Bharatpur Beach, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Laxmanpur Beach",
+      "Explore Laxmanpur Beach, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Kalapathar Beach",
+      "Explore Kalapathar Beach, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Barren Island",
+      "Explore Barren Island, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ],
+    [
+      "Jolly Buoy Island",
+      "Explore Jolly Buoy Island, a memorable destination in Andaman and Nicobar Islands.",
+      "2-4 hours"
+    ]
+  ],
+  "Dadra and Nagar Haveli and Daman and Diu": [
+    [
+      "Silvassa",
+      "Explore Silvassa, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Daman",
+      "Explore Daman, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Diu",
+      "Explore Diu, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Jampore Beach",
+      "Explore Jampore Beach, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Devka Beach",
+      "Explore Devka Beach, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Naida Caves",
+      "Explore Naida Caves, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Diu Fort",
+      "Explore Diu Fort, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "St. Paul's Church",
+      "Explore St. Paul's Church, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Ghogla Beach",
+      "Explore Ghogla Beach, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Dudhni Waterfalls",
+      "Explore Dudhni Waterfalls, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Vanganga Lake Garden",
+      "Explore Vanganga Lake Garden, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Tribal Cultural Museum",
+      "Explore Tribal Cultural Museum, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Nagoa Beach",
+      "Explore Nagoa Beach, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Fort Jerome",
+      "Explore Fort Jerome, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ],
+    [
+      "Mirasol Lake Garden",
+      "Explore Mirasol Lake Garden, a memorable destination in Dadra and Nagar Haveli and Daman and Diu.",
+      "2-4 hours"
+    ]
+  ],
+  "Lakshadweep": [
+    [
+      "Kavaratti",
+      "Explore Kavaratti, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Agatti",
+      "Explore Agatti, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Bangaram",
+      "Explore Bangaram, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Kadmat",
+      "Explore Kadmat, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Kalpeni",
+      "Explore Kalpeni, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Minicoy",
+      "Explore Minicoy, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Thinnakara",
+      "Explore Thinnakara, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Andrott",
+      "Explore Andrott, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Amini",
+      "Explore Amini, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Kiltan",
+      "Explore Kiltan, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Chetlat",
+      "Explore Chetlat, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Bitra",
+      "Explore Bitra, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Marine Museum Kavaratti",
+      "Explore Marine Museum Kavaratti, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Agatti Lagoon",
+      "Explore Agatti Lagoon, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ],
+    [
+      "Bangaram Lagoon",
+      "Explore Bangaram Lagoon, a memorable destination in Lakshadweep.",
+      "2-4 hours"
+    ]
+  ],
+  "Puducherry": [
+    [
+      "Puducherry",
+      "Explore Puducherry, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Promenade Beach",
+      "Explore Promenade Beach, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Auroville",
+      "Explore Auroville, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Sri Aurobindo Ashram",
+      "Explore Sri Aurobindo Ashram, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Paradise Beach",
+      "Explore Paradise Beach, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "White Town",
+      "Explore White Town, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "French Quarter",
+      "Explore French Quarter, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Arikamedu",
+      "Explore Arikamedu, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Serenity Beach",
+      "Explore Serenity Beach, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Botanical Garden",
+      "Explore Botanical Garden, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Chunnambar Boat House",
+      "Explore Chunnambar Boat House, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Basilica of the Sacred Heart",
+      "Explore Basilica of the Sacred Heart, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Manakula Vinayagar Temple",
+      "Explore Manakula Vinayagar Temple, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Puducherry Museum",
+      "Explore Puducherry Museum, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ],
+    [
+      "Mahe",
+      "Explore Mahe, a memorable destination in Puducherry.",
+      "2-4 hours"
+    ]
+  ]
+};
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let PlaceClass = null;
+
+let currentPlace = null;
+
+let selectedCity = "";
+
+let selectedPlace = "";
+
+let selectedRidePrice = 0;
+
+let userLatitude = null;
+
+let userLongitude = null;
+
+
+/* =====================================================
+   INITIALIZE GOOGLE PLACES
+===================================================== */
+
+async function initializeGoogle(){
+
+    if(!GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY === "YOUR_GOOGLE_MAPS_API_KEY"){
+        console.log("Google Maps key not configured. Wikimedia photos and manual ride links remain available.");
+        return;
+    }
+
+    try{
+
+        await loadGoogleMaps();
+
+        const library =
+            await google.maps.importLibrary(
+                "places"
+            );
+
+        PlaceClass =
+            library.Place;
+
+        console.log(
+            "Google Places API ready."
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Google Places could not load. " +
+            "Please check your Google Maps API key."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   POPULATE CITY SELECT
+===================================================== */
+
+function loadCities(){
+
+    const select =
+        document.getElementById(
+            "citySelect"
+        );
+
+    Object.keys(cities)
+        .forEach(function(city){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                city;
+
+            option.textContent =
+                city;
+
+            select.appendChild(
+                option
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   CITY CHANGED
+===================================================== */
+
+async function cityChanged(){
+
+    const city =
+        document.getElementById(
+            "citySelect"
+        ).value;
+
+    if(!city){
+        return;
+    }
+
+    selectedCity =
+        city;
+
+    document.getElementById(
+        "placesTitle"
+    ).innerText =
+        "🌟 Top 15 Places in " +
+        city;
+
+    document.getElementById(
+        "placesSubtitle"
+    ).innerText =
+        "15 curated destinations with automatic destination-photo search and a guaranteed fallback image.";
+
+    await displayPlaces(
+        city,
+        cities[city]
+    );
+
+    document.getElementById(
+        "places"
+    ).scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   DISPLAY PLACES
+===================================================== */
+
+async function displayPlaces(
+    city,
+    placeList
+){
+
+    const grid =
+        document.getElementById(
+            "placeGrid"
+        );
+
+    grid.innerHTML = "";
+
+
+    placeList
+        .slice(0,15)
+        .forEach(function(place,index){
+
+            const card =
+                createPlaceCard(
+                    place,
+                    city,
+                    index
+                );
+
+            grid.appendChild(
+                card
+            );
+
+        });
+
+
+    /*
+       Load real Google photos after cards
+       are created.
+    */
+
+    if(!PlaceClass){
+
+        console.warn(
+            "Google Places not ready."
+        );
+
+        return;
+    }
+
+
+    const cards =
+        Array.from(
+            grid.querySelectorAll(
+                ".place-card"
+            )
+        );
+
+
+    for(
+        let i = 0;
+        i < cards.length;
+        i++
+    ){
+
+        loadPlaceImage(
+            placeList[i][0],
+            city,
+            cards[i],
+            i
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CREATE CARD
+===================================================== */
+
+function createPlaceCard(
+    place,
+    city,
+    index
+){
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+    card.className =
+        "place-card";
+
+
+    const imageWrapper =
+        document.createElement(
+            "div"
+        );
+
+    imageWrapper.className =
+        "place-image-wrapper";
+
+
+    imageWrapper.innerHTML = `
+
+        <div class="loading-image">
+
+            📸 Loading Google photo...
+
+        </div>
+
+        <div class="place-number">
+
+            ${index + 1}
+
+        </div>
+
+    `;
+
+
+    const info =
+        document.createElement(
+            "div"
+        );
+
+    info.className =
+        "place-info";
+
+
+    info.innerHTML = `
+
+        <h3>
+            ${escapeHTML(place[0])}
+        </h3>
+
+        <p>
+            ${escapeHTML(place[1])}
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                ⏱️ ${escapeHTML(place[2])}
+            </span>
+
+            <span class="tag">
+                📍 ${escapeHTML(city)}
+            </span>
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="btn guide-btn"
+                onclick="openGuide(
+                    '${escapeJS(place[0])}',
+                    '${escapeJS(place[1])}',
+                    '${escapeJS(place[2])}',
+                    '${escapeJS(city)}'
+                )">
+
+                📖 Guide
+
+            </button>
+
+
+            <button
+                class="btn ride-btn"
+                onclick="openRide(
+                    '${escapeJS(place[0])}',
+                    '${escapeJS(city)}'
+                )">
+
+                🚕 Ride
+
+            </button>
+
+
+            <button
+                class="btn food-btn"
+                onclick="openFood(
+                    '${escapeJS(place[0])}',
+                    '${escapeJS(city)}'
+                )">
+
+                🍔 Food
+
+            </button>
+
+
+            <button
+                class="btn maps-btn"
+                onclick="openGoogleMaps(
+                    '${escapeJS(place[0])}',
+                    '${escapeJS(city)}'
+                )">
+
+                📍 Maps
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    card.appendChild(
+        imageWrapper
+    );
+
+    card.appendChild(
+        info
+    );
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   PLACE PHOTO LOADING
+===================================================== */
+function scenicFallbackDataURL(placeName, city, index=0){
+    const palettes = [
+        ['#0f766e','#14b8a6','#fef3c7'],['#1d4ed8','#38bdf8','#fef9c3'],
+        ['#7c3aed','#c084fc','#fce7f3'],['#b45309','#f59e0b','#fff7ed'],
+        ['#be123c','#fb7185','#fff1f2'],['#047857','#34d399','#ecfdf5'],
+        ['#0369a1','#22d3ee','#ecfeff'],['#4338ca','#818cf8','#eef2ff'],
+        ['#9a3412','#fb923c','#ffedd5'],['#166534','#84cc16','#f7fee7']
+    ];
+    const pal = palettes[index % palettes.length];
+    const safePlace = String(placeName).replace(/[&<>"']/g,'');
+    const safeCity = String(city).replace(/[&<>"']/g,'');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${pal[0]}"/><stop offset=".55" stop-color="${pal[1]}"/><stop offset="1" stop-color="${pal[2]}"/></linearGradient></defs>
+      <rect width="1200" height="700" fill="url(#g)"/>
+      <circle cx="930" cy="150" r="95" fill="#fff" opacity=".25"/>
+      <path d="M0 500 L260 260 L430 430 L650 190 L930 500 L1080 350 L1200 470 V700 H0Z" fill="#082f49" opacity=".55"/>
+      <path d="M0 570 Q260 470 520 570 T1200 550 V700 H0Z" fill="#020617" opacity=".42"/>
+      <g fill="#fff" font-family="Arial,Helvetica,sans-serif">
+        <text x="70" y="100" font-size="26" font-weight="700" opacity=".9">TRAVELGURU • INDIA</text>
+        <text x="70" y="565" font-size="46" font-weight="800">${safePlace}</text>
+        <text x="70" y="610" font-size="28" opacity=".9">${safeCity} • Explore • Experience • Enjoy</text>
+      </g>
+    </svg>`;
+    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+}
+
+async function loadPlaceImage(placeName, city, card, index){
+    const wrapper = card.querySelector(".place-image-wrapper");
+    const number = card.querySelector(".place-number")?.innerText || (index + 1);
+    const fallback = scenicFallbackDataURL(placeName, city, index);
+
+    // Show a guaranteed visual immediately.
+    wrapper.innerHTML = `
+        <img class="place-image"
+             src="${fallback}"
+             alt="${escapeHTML(placeName)}, ${escapeHTML(city)}"
+             loading="lazy">
+        <div class="place-number">${number}</div>
+        <div class="photo-credit">TravelGuru preview</div>
+    `;
+
+    const img = wrapper.querySelector(".place-image");
+    if (!img) return;
+
+    // First try Wikimedia Commons. This does not require a Google API key.
+    try {
+        const query = encodeURIComponent(`${placeName} ${city}`);
+        const api =
+            `https://commons.wikimedia.org/w/api.php?action=query&generator=search` +
+            `&gsrsearch=${query}&gsrnamespace=6&gsrlimit=8&prop=imageinfo` +
+            `&iiprop=url|mime|extmetadata&iiurlwidth=1200&format=json&origin=*`;
+
+        const response = await fetch(api, {mode:"cors"});
+        if (!response.ok) throw new Error("Wikimedia request failed");
+
+        const json = await response.json();
+        const pages = Object.values(json.query?.pages || {});
+        const valid = pages.find(p =>
+            p.imageinfo?.[0]?.thumburl &&
+            /^image\//.test(p.imageinfo[0].mime || "")
+        );
+
+        if (valid) {
+            const photoURL = valid.imageinfo[0].thumburl;
+
+            await new Promise((resolve, reject) => {
+                const test = new Image();
+                test.onload = resolve;
+                test.onerror = reject;
+                test.src = photoURL;
+            });
+
+            img.src = photoURL;
+            img.onerror = () => {
+                img.onerror = null;
+                img.src = fallback;
+            };
+
+            const credit = wrapper.querySelector(".photo-credit");
+            if (credit) credit.textContent = "Photo: Wikimedia Commons";
+            return;
+        }
+    } catch(error) {
+        console.warn("Wikimedia photo unavailable:", placeName, error);
+    }
+
+    // If a Google Maps key is configured, use Google Places as a second option.
+    if (PlaceClass &&
+        GOOGLE_MAPS_API_KEY &&
+        GOOGLE_MAPS_API_KEY !== "YOUR_GOOGLE_MAPS_API_KEY") {
+        try {
+            const result = await PlaceClass.searchByText({
+                textQuery: `${placeName}, ${city}, India`,
+                fields: ["displayName","photos"],
+                maxResultCount: 1
+            });
+
+            const photo = result.places?.[0]?.photos?.[0];
+            if (photo) {
+                const url = photo.getURI({
+                    maxWidth: 1200,
+                    maxHeight: 750
+                });
+
+                img.src = url;
+                img.onerror = () => {
+                    img.onerror = null;
+                    img.src = fallback;
+                };
+
+                const credit = wrapper.querySelector(".photo-credit");
+                if (credit) credit.textContent = "Photo: Google Places";
+            }
+        } catch(error) {
+            console.warn("Google photo unavailable:", placeName, error);
+        }
+    }
+}
+
+
+/* =====================================================
+   GUIDE
+===================================================== */
+
+window.TravelGuruHistory = {
+    "Taj Mahal": "The Taj Mahal was commissioned by Mughal emperor Shah Jahan in memory of Mumtaz Mahal. It is one of Agra's most famous landmarks and is celebrated for its white marble architecture and gardens.",
+    "India Gate": "India Gate is a major New Delhi war memorial dedicated to Indian soldiers who died during the First World War. It stands along Kartavya Path and is one of the city's best-known landmarks.",
+    "Gateway of India": "The Gateway of India is a landmark on Mumbai's waterfront, built during the British period. It has become one of the city's most recognisable symbols.",
+    "Mysore Palace": "Mysore Palace is the historic royal residence of the Wadiyar dynasty. Its grand Indo-Saracenic architecture and illuminated evenings make it a major Mysuru attraction.",
+    "Sarnath": "Sarnath is an important Buddhist historical site near Varanasi. It is traditionally associated with Buddha's first sermon and is home to major archaeological and religious monuments.",
+    "Kashi Vishwanath Temple": "Kashi Vishwanath is one of the most important Shiva temples in Varanasi and is closely connected with the religious history and traditions of Kashi.",
+    "Prem Mandir": "Prem Mandir is a large temple complex in Vrindavan known for its detailed marble work, devotional themes and evening illumination."
+};
+
+async function openGuide(name, description, duration, city){
+    selectedPlace = name;
+    selectedCity = city;
+    window.currentSelectedPlace = name;
+    const popup = document.getElementById('guidePopup');
+    const content = document.getElementById('guideContent');
+    if(!popup || !content) return;
+
+    const index = Math.max(0, (cities[city] || []).findIndex(p => p[0] === name));
+    const fallback = scenicFallbackDataURL(name, city, index);
+    // Safe history lookup: the previous version referenced an undeclared
+    // placeHistory variable, which caused a ReferenceError and stopped the
+    // Guide popup before it could render.
+    const historyData = window.TravelGuruHistory || {};
+    const history = historyData[name]
+        ? historyData[name]
+        : `${name} is a notable destination in ${city}. Its history, architecture, local traditions and surrounding attractions make it worth exploring.`;
+    const mapsURL = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${name}, ${city}, India`);
+
+    popup.style.display = 'flex';
+    document.body.classList.add('guide-open');
+    content.innerHTML = `
+      <div class="guide-header">
+        <span class="eyebrow">TRAVEL GUIDE</span>
+        <h2>📖 ${escapeHTML(name)}</h2>
+        <p>📍 ${escapeHTML(city)}</p>
+      </div>
+      <div id="guideImage" class="guide-image-box">
+        <img class="guide-main-image" src="${fallback}" alt="${escapeHTML(name)}">
+      </div>
+      <div class="guide-history">
+        <h3>🏛️ History & Importance</h3>
+        <p>${escapeHTML(history)}</p>
+        <p>${escapeHTML(description)}</p>
+      </div>
+      <div class="guide-grid">
+        <div class="info-box"><strong>⏱️ Visit Time</strong><br>${escapeHTML(duration)}</div>
+        <div class="info-box"><strong>📍 Location</strong><br>${escapeHTML(city)}</div>
+        <div class="info-box"><strong>🍴 Food</strong><br>Find restaurants & delivery nearby</div>
+        <div class="info-box"><strong>🏨 Stay</strong><br>Hotels, dharamshalas, PG & rooms</div>
+      </div>
+      <h3>💡 Travel Tips</h3>
+      <p class="guide-tips">• Start early when possible.<br>• Carry drinking water.<br>• Respect local culture.<br>• Check opening hours before visiting.<br>• Keep valuables safe.<br>• Check weather before travelling.</p>
+      <div class="guide-actions">
+        <a class="btn maps-btn" href="${mapsURL}" target="_blank" rel="noopener">📍 Open Maps</a>
+        <button class="btn food-btn" onclick="openFood('${escapeJS(name)}','${escapeJS(city)}')">🍔 Food Nearby</button>
+        <button class="btn ride-btn" onclick="openRide('${escapeJS(name)}','${escapeJS(city)}')">🚕 Book Ride</button>
+        <button class="btn" onclick="findStay('hotel')">🏨 Find Stay</button>
+      </div>`;
+
+    // Optional real Google photo replaces the guaranteed local image.
+    if (PlaceClass && GOOGLE_MAPS_API_KEY && GOOGLE_MAPS_API_KEY !== 'YOUR_GOOGLE_MAPS_API_KEY') {
+        try {
+            const result = await PlaceClass.searchByText({
+                textQuery: `${name}, ${city}, India`,
+                fields: ['displayName','photos'],
+                maxResultCount: 1
+            });
+            const photo = result.places?.[0]?.photos?.[0];
+            if(photo){
+                const url = photo.getURI({maxWidth:1200,maxHeight:700});
+                const img = document.querySelector('#guideImage .guide-main-image');
+                if(img){ img.src=url; img.onerror=()=>{img.onerror=null;img.src=fallback;} }
+            }
+        } catch(e){ console.warn('Guide photo unavailable:',e); }
+    }
+}
+
+/* =====================================================
+   GUIDE PHOTO
+===================================================== */
+
+async function loadGuidePhoto(
+    name,
+    city
+){
+
+    if(!PlaceClass){
+        return;
+    }
+
+
+    try{
+
+        const result =
+            await PlaceClass.searchByText({
+
+                textQuery:
+                    name +
+                    ", " +
+                    city +
+                    ", India",
+
+                fields:[
+                    "displayName",
+                    "photos"
+                ],
+
+                maxResultCount:1
+
+            });
+
+
+        if(
+            result.places &&
+            result.places.length
+        ){
+
+            const place =
+                result.places[0];
+
+
+            if(
+                place.photos &&
+                place.photos.length
+            ){
+
+                const photo =
+                    place.photos[0];
+
+
+                const url =
+                    photo.getURI({
+
+                        maxWidth:1000,
+
+                        maxHeight:600
+
+                    });
+
+
+                document.getElementById(
+                    "guideImage"
+                ).innerHTML = `
+
+                    <img
+
+                        class="guide-main-image"
+
+                        src="${url}"
+
+                        alt="${escapeHTML(name)}"
+
+                    >
+
+                `;
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =====================================================
+   GOOGLE MAPS
+===================================================== */
+
+function openGoogleMaps(
+    place,
+    city
+){
+
+    const query =
+        encodeURIComponent(
+            place +
+            ", " +
+            city +
+            ", India"
+        );
+
+
+    window.open(
+
+        "https://www.google.com/maps/search/?api=1&query=" +
+        query,
+
+        "_blank"
+
+    );
+
+}
+
+
+/* =====================================================
+   RIDE + FARE COMPARISON
+===================================================== */
+let pickupLatitude = null;
+let pickupLongitude = null;
+let pickupAddress = "";
+let rideDistanceKm = null;
+
+function openRide(place, city){
+    selectedPlace = place;
+    selectedCity = city;
+    window.currentSelectedPlace = place;
+    selectedPlace = place;
+    selectedCity = city;
+
+    document.getElementById("ridePlace").value = place + ", " + city;
+    document.getElementById("ridePopup").style.display = "flex";
+
+    const dateInput = document.getElementById("travelDate");
+    if(!dateInput.value){
+        dateInput.value = new Date().toISOString().split("T")[0];
+    }
+
+    pickupLatitude = null;
+    pickupLongitude = null;
+    pickupAddress = "";
+    rideDistanceKm = null;
+
+    document.getElementById("pickupLocation").value = "";
+    document.getElementById("locationStatus").innerText =
+        "GPS is selected. Click the button above to detect your location.";
+
+    setPickupMode("gps");
+    updateRideComparison();
+}
+
+function setPickupMode(mode){
+    const gps = document.getElementById("gpsOption");
+    const manual = document.getElementById("manualOption");
+    const input = document.getElementById("pickupLocation");
+
+    gps.classList.toggle("active", mode === "gps");
+    manual.classList.toggle("active", mode === "manual");
+
+    if(mode === "gps"){
+        input.placeholder = "Click Detect My Current Location";
+        input.readOnly = true;
+        document.getElementById("locationStatus").innerText =
+            "GPS selected. Your browser will ask for location permission.";
+    }else{
+        input.readOnly = false;
+        input.placeholder = "Example: Railway Station, Connaught Place";
+        document.getElementById("locationStatus").innerText =
+            "Manual pickup selected. Enter your pickup location.";
+    }
+
+    updateRideComparison();
+}
+
+function useCurrentLocation(){
+    if(!navigator.geolocation){
+        document.getElementById("locationStatus").innerText =
+            "⚠️ Geolocation is not supported by this browser.";
+        return;
+    }
+
+    document.getElementById("locationStatus").innerText =
+        "📍 Detecting your current location...";
+
+    navigator.geolocation.getCurrentPosition(
+        async function(position){
+            pickupLatitude = position.coords.latitude;
+            pickupLongitude = position.coords.longitude;
+
+            pickupAddress = `GPS: ${pickupLatitude.toFixed(5)}, ${pickupLongitude.toFixed(5)}`;
+            document.getElementById("pickupLocation").value = pickupAddress;
+
+            document.getElementById("locationStatus").innerText =
+                "✅ Current location captured successfully.";
+
+            await calculateRideDistance();
+        },
+        function(error){
+            let msg = "Location permission was not available.";
+            if(error.code === 1) msg = "⚠️ Location permission denied. Please allow location access or choose Manual.";
+            if(error.code === 2) msg = "⚠️ Your location could not be determined.";
+            if(error.code === 3) msg = "⚠️ Location request timed out.";
+            document.getElementById("locationStatus").innerText = msg;
+            document.querySelector('input[name="pickupMode"][value="manual"]').checked = true;
+            setPickupMode("manual");
+        },
+        {enableHighAccuracy:true, timeout:10000, maximumAge:60000}
+    );
+}
+
+async function calculateRideDistance(){
+    // Try Google Places coordinates when the API is available.
+    if(PlaceClass){
+        try{
+            const result = await PlaceClass.searchByText({
+                textQuery: selectedPlace + ", " + selectedCity + ", India",
+                fields:["location"],
+                maxResultCount:1
+            });
+
+            if(result.places && result.places.length && result.places[0].location){
+                const destination = result.places[0].location;
+                const lat2 = typeof destination.lat === "function" ? destination.lat() : destination.lat;
+                const lng2 = typeof destination.lng === "function" ? destination.lng() : destination.lng;
+
+                if(Number.isFinite(lat2) && Number.isFinite(lng2)){
+                    rideDistanceKm = haversine(
+                        pickupLatitude, pickupLongitude, lat2, lng2
+                    );
+                    renderRideComparison();
+                    return;
+                }
+            }
+        }catch(error){
+            console.warn("Destination coordinates unavailable:", error);
+        }
+    }
+
+    // If an API key is not configured, keep the fare honest rather than inventing distance.
+    rideDistanceKm = null;
+    renderRideComparison();
+}
+
+function haversine(lat1,lng1,lat2,lng2){
+    const R = 6371;
+    const dLat = (lat2-lat1) * Math.PI/180;
+    const dLng = (lng2-lng1) * Math.PI/180;
+
+    const a =
+        Math.sin(dLat/2)**2 +
+        Math.cos(lat1*Math.PI/180) *
+        Math.cos(lat2*Math.PI/180) *
+        Math.sin(dLng/2)**2;
+
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function estimateRideFare(service, vehicle, distance){
+    // Planning-only estimates. They are NOT live app fares.
+    const base = {
+        rapido:{auto:30, sedan:65, suv:95},
+        ola:{auto:35, sedan:70, suv:100},
+        uber:{auto:40, sedan:75, suv:105}
+    };
+
+    const perKm = {
+        rapido:{auto:11, sedan:15, suv:19},
+        ola:{auto:12, sedan:16, suv:20},
+        uber:{auto:13, sedan:17, suv:21}
+    };
+
+    let fare = base[service][vehicle] + distance * perKm[service][vehicle];
+
+    const passengers = Number(document.getElementById("passengerCount").value || 1);
+    if(passengers > 4) fare += (passengers - 4) * 50;
+
+    return Math.round(fare);
+}
+
+function updateRideComparison(){
+    const mode = document.querySelector('input[name="pickupMode"]:checked')?.value;
+    const vehicle = document.querySelector('input[name="vehicle"]:checked')?.value || "auto";
+
+    if(mode === "gps" && pickupLatitude !== null && pickupLongitude !== null){
+        calculateRideDistance();
+    }else{
+        rideDistanceKm = null;
+        renderRideComparison();
+    }
+}
+
+function renderRideComparison(){
+    const box = document.getElementById("rideComparison");
+    const distanceText = rideDistanceKm
+        ? `${rideDistanceKm.toFixed(1)} km`
+        : "Enter pickup + use GPS for distance";
+
+    document.getElementById("rideDistance").innerText = distanceText;
+
+    const vehicle = document.querySelector('input[name="vehicle"]:checked')?.value || "auto";
+
+    if(!rideDistanceKm){
+        document.getElementById("priceDescription").innerText =
+            "Live distance needs your GPS location. Manual pickup can still be opened in the ride apps.";
+    }else{
+        document.getElementById("priceDescription").innerText =
+            `${vehicle.toUpperCase()} • planning estimates only`;
+    }
+
+    const services = ["rapido","ola","uber"];
+    const fares = services.map(service =>
+        rideDistanceKm ? estimateRideFare(service,vehicle,rideDistanceKm) : null
+    );
+
+    const validFares = fares.filter(v => v !== null);
+    const minFare = validFares.length ? Math.min(...validFares) : null;
+
+    box.innerHTML = services.map((service,i) => {
+        const fare = fares[i];
+        const best = fare !== null && fare === minFare;
+        const title = service === "rapido" ? "Rapido 🟡" :
+                      service === "ola" ? "Ola ⚫" : "Uber ⚫";
+
+        const pickup = pickupLatitude !== null && pickupLongitude !== null
+            ? `${pickupLatitude},${pickupLongitude}`
+            : (document.getElementById("pickupLocation").value || "My Location");
+
+        const destination = encodeURIComponent(selectedPlace + ", " + selectedCity + ", India");
+        const pickupEncoded = encodeURIComponent(pickup);
+
+        let url = "";
+        if(service === "rapido"){
+            url = "https://www.rapido.bike/";
+        }else if(service === "ola"){
+            url = "https://www.olacabs.com/";
+        }else{
+            url = "https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=" +
+                  destination;
+        }
+
+        return `
+            <div class="ride-service ${best ? "best" : ""}">
+                <h4>${title}</h4>
+                <small>${best ? "🏆 Cheapest planning estimate" : "Estimated fare"}</small>
+                <div class="ride-fare">${fare !== null ? "₹" + fare.toLocaleString("en-IN") : "Check live"}</div>
+                <small>Live fare may change because of traffic, demand, distance and offers.</small>
+                <a class="service-btn ${service}" href="${url}" target="_blank" rel="noopener">
+                    Open ${service.charAt(0).toUpperCase()+service.slice(1)}
+                </a>
+            </div>
+        `;
+    }).join("");
+}
+
+function submitRide(event){
+    event.preventDefault();
+
+    const name = document.getElementById("passengerName").value;
+    const phone = document.getElementById("passengerPhone").value;
+    const passengers = document.getElementById("passengerCount").value;
+    const date = document.getElementById("travelDate").value;
+    const vehicle = document.querySelector('input[name="vehicle"]:checked').value;
+    const pickupMode = document.querySelector('input[name="pickupMode"]:checked').value;
+    const pickup = document.getElementById("pickupLocation").value;
+    const message = document.getElementById("rideMessage").value;
+
+    const text =
+        "TravelGuru.com Ride Plan\n\n" +
+        "Passenger: " + name + "\n" +
+        "Phone: " + phone + "\n" +
+        "Passengers: " + passengers + "\n" +
+        "Vehicle: " + vehicle + "\n" +
+        "Date: " + date + "\n" +
+        "Pickup Mode: " + pickupMode + "\n" +
+        "Pickup: " + pickup + "\n" +
+        "Destination: " + selectedPlace + ", " + selectedCity + "\n" +
+        "Distance: " + (rideDistanceKm ? rideDistanceKm.toFixed(1) + " km" : "Not calculated") + "\n" +
+        "Message: " + message;
+
+    const whatsappURL =
+        "https://wa.me/919214686973?text=" + encodeURIComponent(text);
+
+    window.open(whatsappURL,"_blank");
+}
+
+/* =====================================================
+   FOOD
+===================================================== */
+
+let foodPlace = "";
+
+let foodCity = "";
+
+
+
+/* ===================== ENHANCED FOOD + DELIVERY ===================== */
+function findDelivery(service) {
+  const destination = (typeof foodPlace !== "undefined" && foodPlace)
+    ? `${foodPlace}, ${foodCity || ""}`
+    : (selectedPlace ? `${selectedPlace}, ${selectedCity}` : "near me");
+
+  const searches = {
+    "Zomato": `restaurants and food delivery near ${destination}`,
+    "Swiggy": `food delivery near ${destination}`,
+    "McDonald's": `McDonald's near ${destination}`,
+    "Burger King": `Burger King near ${destination}`,
+    "Domino's": `Domino's Pizza near ${destination}`,
+    "Pizza Hut": `Pizza Hut near ${destination}`,
+    "KFC": `KFC near ${destination}`
+  };
+
+  const query = searches[service] || `food near ${destination}`;
+  const url = "https://www.google.com/maps/search/?api=1&query=" +
+              encodeURIComponent(query);
+
+  const result = document.getElementById("foodResult");
+  if (result) {
+    result.innerHTML = `
+      <div class="food-service-card">
+        <h3>🍽️ ${escapeHTML(service)}</h3>
+        <p>Finding <strong>${escapeHTML(service)}</strong> around
+        <strong>${escapeHTML(destination)}</strong>.</p>
+        <a class="btn primary-btn" href="${url}" target="_blank" rel="noopener">
+          📍 Find Nearby
+        </a>
+        <p class="small-note">For delivery apps, use the app/site to confirm live delivery availability, delivery fee and minimum order.</p>
+      </div>`;
+  }
+}
+
+function showEasyFoodOptions() {
+  const destination = (typeof foodPlace !== "undefined" && foodPlace)
+    ? `${foodPlace}, ${foodCity || ""}`
+    : (selectedPlace ? `${selectedPlace}, ${selectedCity}` : "near me");
+
+  const url = "https://www.google.com/maps/search/?api=1&query=" +
+              encodeURIComponent(`easy takeaway food near ${destination}`);
+
+  const result = document.getElementById("foodResult");
+  if (result) {
+    result.innerHTML = `
+      <div class="food-service-card">
+        <h3>🥡 Easy-to-carry food</h3>
+        <p>Good options for travelling: sandwiches, burgers, wraps, rolls,
+        pizza, packed meals, snacks and bottled drinks.</p>
+        <a class="btn primary-btn" href="${url}" target="_blank" rel="noopener">
+          🔎 Find Takeaway Food
+        </a>
+      </div>`;
+  }
+}
+
+function showFoodDeliveryPanel() {
+  const result = document.getElementById("foodResult");
+  if (!result) return;
+
+  result.innerHTML = `
+    <div class="food-grid">
+      <button class="food-service" onclick="findDelivery('Zomato')">🍴 Zomato</button>
+      <button class="food-service" onclick="findDelivery('Swiggy')">🥡 Swiggy</button>
+      <button class="food-service" onclick="findDelivery('McDonald's')">🍔 McDonald's</button>
+      <button class="food-service" onclick="findDelivery('Burger King')">🍔 Burger King</button>
+      <button class="food-service" onclick="findDelivery('Domino's')">🍕 Domino's</button>
+      <button class="food-service" onclick="findDelivery('Pizza Hut')">🍕 Pizza Hut</button>
+      <button class="food-service" onclick="findDelivery('KFC')">🍗 KFC</button>
+      <button class="food-service" onclick="showEasyFoodOptions()">🥡 Easy Takeaway</button>
+    </div>`;
+}
+
+/* ===================== STAY SEARCH ===================== */
+function findStay(type) {
+    try {
+        const citySelect = document.getElementById("citySelect");
+        const stayResult = document.getElementById("stayResult");
+
+        if (!stayResult) {
+            alert("Stay section could not be found. Please reload the page.");
+            return;
+        }
+
+        // Always get the latest city from the selector.
+        const city =
+            (citySelect && citySelect.value) ||
+            selectedCity ||
+            "India";
+
+        // Use the currently selected place if available.
+        const place =
+            selectedPlace ||
+            window.currentSelectedPlace ||
+            "";
+
+        const destination = place
+            ? `${place}, ${city}, India`
+            : `${city}, India`;
+
+        const options = {
+            hotel: {
+                title: "Hotels",
+                icon: "🏨",
+                query: `hotels near ${destination}`,
+                text: "Find hotels near your selected destination and compare ratings, distance and prices."
+            },
+            dharamshala: {
+                title: "Dharamshalas",
+                icon: "🛕",
+                query: `dharamshala near ${destination}`,
+                text: "Find dharamshalas and affordable religious/community stays near the destination."
+            },
+            pg: {
+                title: "PG & Rooms",
+                icon: "🏠",
+                query: `PG rooms guest house rooms near ${destination}`,
+                text: "Find PGs, guest houses and private rooms around the selected destination."
+            },
+            budget: {
+                title: "Budget Stay",
+                icon: "💰",
+                query: `cheap budget hotels rooms near ${destination}`,
+                text: "Find lower-cost hotels and rooms and compare reviews before booking."
+            }
+        };
+
+        const option = options[type] || options.hotel;
+
+        const mapsUrl =
+            "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent(option.query);
+
+        // Extra direct searches make the feature useful even when Maps
+        // does not have a specific category result.
+        const bookingUrl =
+            "https://www.google.com/search?q=" +
+            encodeURIComponent(`${option.query} booking`);
+
+        stayResult.innerHTML = `
+            <div class="stay-result-card">
+                <div class="stay-result-icon">${option.icon}</div>
+
+                <div class="stay-result-content">
+                    <div class="stay-badge">NEARBY STAY</div>
+
+                    <h3>${escapeHTML(option.title)}</h3>
+
+                    <p>
+                        <strong>📍 ${escapeHTML(destination)}</strong>
+                    </p>
+
+                    <p>${escapeHTML(option.text)}</p>
+
+                    <div class="stay-result-actions">
+                        <a
+                            class="btn primary-btn"
+                            href="${mapsUrl}"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            📍 Find Nearby
+                        </a>
+
+                        <a
+                            class="btn"
+                            href="${bookingUrl}"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            🔎 Compare Online
+                        </a>
+                    </div>
+
+                    <p class="stay-note">
+                        💡 Check live price, availability, reviews, distance,
+                        check-in time and cancellation policy before booking.
+                    </p>
+                </div>
+            </div>
+        `;
+
+        // Make the result visible and bring the user to it.
+        stayResult.style.display = "block";
+        stayResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    } catch (error) {
+        console.error("Stay search error:", error);
+
+        const result = document.getElementById("stayResult");
+        if (result) {
+            result.innerHTML = `
+                <div class="stay-error">
+                    ⚠️ Stay search could not be opened.
+                    Please select a city and try again.
+                </div>
+            `;
+        }
+    }
+}
+
+function openFood(
+    place,
+    city
+){
+    selectedPlace = place;
+    selectedCity = city;
+    window.currentSelectedPlace = place;
+
+    foodPlace =
+        place;
+
+    foodCity =
+        city;
+
+
+    document.getElementById(
+        "foodText"
+    ).innerHTML = `
+        <h3>🍽️ Food near ${escapeHTML(place)}, ${escapeHTML(city)}</h3>
+        <p>Order delivery, find popular chains or choose easy-to-carry takeaway food.</p>
+        <div class="food-grid">
+          <button class="food-service" onclick="showFoodDeliveryPanel()">🚴 Delivery & Chains</button>
+          <button class="food-service" onclick="showEasyFoodOptions()">🥡 Easy Takeaway</button>
+          <button class="food-service" onclick="findDelivery('Zomato')">🍴 Zomato</button>
+          <button class="food-service" onclick="findDelivery('Swiggy')">🥡 Swiggy</button>
+          <button class="food-service" onclick="findDelivery('McDonald\'s')">🍔 McDonald's</button>
+          <button class="food-service" onclick="findDelivery('Burger King')">🍔 Burger King</button>
+        </div>`;
+
+
+    document.getElementById(
+        "foodPopup"
+    ).style.display =
+        "flex";
+
+}
+
+
+function captureLocation(){
+
+    if(!navigator.geolocation){
+
+        document.getElementById(
+            "foodResult"
+        ).innerText =
+            "Your browser does not support location.";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "foodResult"
+    ).innerText =
+        "📍 Capturing your location...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            userLatitude =
+                position.coords.latitude;
+
+            userLongitude =
+                position.coords.longitude;
+
+
+            document.getElementById(
+                "foodResult"
+            ).innerHTML = `
+
+                ✅ Location captured successfully.
+
+                <br><br>
+
+                Now select a food category.
+
+            `;
+
+        },
+
+        function(){
+
+            document.getElementById(
+                "foodResult"
+            ).innerText =
+                "⚠️ Location permission was denied.";
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   FOOD SEARCH
+===================================================== */
+
+async function findFood(
+    category
+){
+
+    let query = "";
+
+
+    if(category === "cheap"){
+
+        query =
+            "cheap restaurants near " +
+            foodPlace +
+            " " +
+            foodCity;
+
+    }
+
+
+    else if(
+        category === "moderate"
+    ){
+
+        query =
+            "best restaurants near " +
+            foodPlace +
+            " " +
+            foodCity;
+
+    }
+
+
+    else{
+
+        query =
+            "premium restaurants near " +
+            foodPlace +
+            " " +
+            foodCity;
+
+    }
+
+
+    /*
+       Google Maps gives the user
+       current restaurant results.
+    */
+
+    const mapsURL =
+
+        "https://www.google.com/maps/search/?api=1&query=" +
+
+        encodeURIComponent(
+            query
+        );
+
+
+    document.getElementById(
+        "foodResult"
+    ).innerHTML = `
+
+        <h3>
+            🍽️ Restaurants Near ${escapeHTML(foodPlace)}
+        </h3>
+
+        <p>
+
+            Search category:
+            <strong>
+                ${escapeHTML(category)}
+            </strong>
+
+        </p>
+
+        <a
+            href="${mapsURL}"
+            target="_blank">
+
+            🍔 Open Nearby Restaurants
+
+        </a>
+
+    `;
+
+}
+
+
+/* =====================================================
+   SEARCH AUTOCOMPLETE
+===================================================== */
+
+let autocompleteTimer = null;
+
+
+function searchSuggestions(){
+
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    const value =
+        input.value
+        .trim()
+        .toLowerCase();
+
+
+    const box =
+        document.getElementById(
+            "suggestions"
+        );
+
+
+    box.innerHTML = "";
+
+
+    if(value === ""){
+
+        box.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    /*
+       First show our known cities
+       and destinations.
+    */
+
+    let results = [];
+
+
+    Object.keys(cities)
+        .forEach(function(city){
+
+            if(
+                city.toLowerCase()
+                .includes(value)
+            ){
+
+                results.push({
+
+                    type:"city",
+
+                    name:city
+
+                });
+
+            }
+
+
+            cities[city]
+                .forEach(function(place){
+
+                    if(
+                        place[0]
+                        .toLowerCase()
+                        .includes(value)
+                    ){
+
+                        results.push({
+
+                            type:"place",
+
+                            name:place[0],
+
+                            city:city
+
+                        });
+
+                    }
+
+                });
+
+        });
+
+
+    results =
+        results.slice(0,8);
+
+
+    results.forEach(function(item){
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.className =
+            "suggestion";
+
+
+        if(item.type === "city"){
+
+            div.innerHTML =
+
+                "📍 <strong>" +
+                escapeHTML(item.name) +
+                "</strong> — City";
+
+
+            div.onclick =
+                function(){
+
+                    document.getElementById(
+                        "searchInput"
+                    ).value =
+                        item.name;
+
+
+                    document.getElementById(
+                        "citySelect"
+                    ).value =
+                        item.name;
+
+
+                    closeSuggestions();
+
+                    cityChanged();
+
+                };
+
+        }
+
+        else{
+
+            div.innerHTML =
+
+                "🏛️ <strong>" +
+                escapeHTML(item.name) +
+                "</strong> — " +
+                escapeHTML(item.city);
+
+
+            div.onclick =
+                function(){
+
+                    document.getElementById(
+                        "searchInput"
+                    ).value =
+                        item.name;
+
+
+                    closeSuggestions();
+
+
+                    showSinglePlace(
+                        item.name,
+                        item.city
+                    );
+
+                };
+
+        }
+
+
+        box.appendChild(
+            div
+        );
+
+    });
+
+
+    /*
+       Also ask Google Places for
+       live search suggestions/results.
+    */
+
+    clearTimeout(
+        autocompleteTimer
+    );
+
+
+    autocompleteTimer =
+        setTimeout(
+            function(){
+
+                googleLiveSearch(
+                    value
+                );
+
+            },
+            500
+        );
+
+
+    if(results.length){
+
+        box.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =====================================================
+   GOOGLE LIVE SEARCH
+===================================================== */
+
+async function googleLiveSearch(
+    query
+){
+
+    if(
+        !PlaceClass ||
+        query.length < 3
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        const result =
+            await PlaceClass.searchByText({
+
+                textQuery:
+                    query +
+                    " India",
+
+                fields:[
+                    "displayName",
+                    "formattedAddress",
+                    "photos",
+                    "googleMapsURI"
+                ],
+
+                maxResultCount:5
+
+            });
+
+
+        const box =
+            document.getElementById(
+                "suggestions"
+            );
+
+
+        if(
+            !result.places ||
+            !result.places.length
+        ){
+
+            return;
+
+        }
+
+
+        result.places
+            .forEach(function(place){
+
+                if(!place.displayName){
+                    return;
+                }
+
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "suggestion";
+
+
+                div.innerHTML =
+
+                    "🔎 <strong>" +
+
+                    escapeHTML(
+                        place.displayName
+                            .text || ""
+                    ) +
+
+                    "</strong><br>" +
+
+                    "<small>" +
+
+                    escapeHTML(
+                        place.formattedAddress ||
+                        ""
+                    ) +
+
+                    "</small>";
+
+
+                div.onclick =
+                    function(){
+
+                        closeSuggestions();
+
+
+                        const name =
+                            place.displayName
+                                .text;
+
+
+                        showGoogleSearchPlace(
+                            name,
+                            place
+                        );
+
+                    };
+
+
+                box.appendChild(
+                    div
+                );
+
+            });
+
+
+        box.style.display =
+            "block";
+
+
+    }catch(error){
+
+        console.error(
+            "Google search:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SHOW GOOGLE SEARCH PLACE
+===================================================== */
+
+async function showGoogleSearchPlace(
+    name,
+    googlePlace
+){
+
+    const grid =
+        document.getElementById(
+            "placeGrid"
+        );
+
+
+    document.getElementById(
+        "placesTitle"
+    ).innerText =
+        "🔎 Search Result";
+
+
+    document.getElementById(
+        "placesSubtitle"
+    ).innerText =
+        name;
+
+
+    grid.innerHTML = "";
+
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "place-card";
+
+
+    let photoURL = "";
+
+
+    if(
+        googlePlace.photos &&
+        googlePlace.photos.length
+    ){
+
+        photoURL =
+            googlePlace.photos[0]
+                .getURI({
+
+                    maxWidth:1000,
+
+                    maxHeight:650
+
+                });
+
+    }
+
+
+    card.innerHTML = `
+
+        <div class="place-image-wrapper">
+
+            ${
+                photoURL
+
+                ?
+
+                `<img
+                    class="place-image"
+                    src="${photoURL}"
+                    alt="${escapeHTML(name)}"
+                >`
+
+                :
+
+                `<div class="loading-image">
+                    📍 ${escapeHTML(name)}
+                </div>`
+            }
+
+        </div>
+
+
+        <div class="place-info">
+
+            <h3>
+                ${escapeHTML(name)}
+            </h3>
+
+
+            <p>
+
+                ${
+                    escapeHTML(
+                        googlePlace.formattedAddress ||
+                        "India"
+                    )
+                }
+
+            </p>
+
+
+            <div class="buttons">
+
+                <button
+                    class="btn maps-btn"
+                    onclick="openGoogleMaps(
+                        '${escapeJS(name)}',
+                        '${escapeJS(
+                            googlePlace.formattedAddress ||
+                            ""
+                        )}'
+                    )">
+
+                    📍 Open Google Maps
+
+                </button>
+
+
+                <button
+                    class="btn food-btn"
+                    onclick="openFood(
+                        '${escapeJS(name)}',
+                        '${escapeJS(
+                            googlePlace.formattedAddress ||
+                            ""
+                        )}'
+                    )">
+
+                    🍔 Food Nearby
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    grid.appendChild(
+        card
+    );
+
+
+    document.getElementById(
+        "places"
+    ).scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   SHOW KNOWN PLACE
+===================================================== */
+
+async function showSinglePlace(
+    name,
+    city
+){
+
+    const place =
+        cities[city]
+        .find(function(item){
+
+            return item[0] === name;
+
+        });
+
+
+    if(!place){
+
+        return;
+
+    }
+
+
+    displayPlaces(
+        city,
+        [place]
+    );
+
+
+    document.getElementById(
+        "placesTitle"
+    ).innerText =
+        "🔎 " + name;
+
+
+    document.getElementById(
+        "placesSubtitle"
+    ).innerText =
+        "Located in " + city;
+
+
+    document.getElementById(
+        "places"
+    ).scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   ENTER SEARCH
+===================================================== */
+
+function searchEnter(event){
+
+    if(
+        event.key === "Enter"
+    ){
+
+        performSearch();
+
+    }
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+async function performSearch(){
+
+    const value =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim();
+
+
+    if(!value){
+
+        return;
+
+    }
+
+
+    closeSuggestions();
+
+
+    /*
+       Check local city first.
+    */
+
+    const city =
+        Object.keys(cities)
+        .find(function(item){
+
+            return item.toLowerCase() ===
+                   value.toLowerCase();
+
+        });
+
+
+    if(city){
+
+        document.getElementById(
+            "citySelect"
+        ).value =
+            city;
+
+
+        cityChanged();
+
+        return;
+
+    }
+
+
+    /*
+       Check local places.
+    */
+
+    for(
+        const cityName of
+        Object.keys(cities)
+    ){
+
+        const place =
+            cities[cityName]
+            .find(function(item){
+
+                return item[0]
+                    .toLowerCase()
+                    .includes(
+                        value.toLowerCase()
+                    );
+
+            });
+
+
+        if(place){
+
+            showSinglePlace(
+                place[0],
+                cityName
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+       If not found locally,
+       search Google Places.
+    */
+
+    if(PlaceClass){
+
+        try{
+
+            const result =
+                await PlaceClass.searchByText({
+
+                    textQuery:
+                        value +
+                        " India",
+
+                    fields:[
+                        "displayName",
+                        "formattedAddress",
+                        "location",
+                        "photos",
+                        "googleMapsURI"
+                    ],
+
+                    maxResultCount:1
+
+                });
+
+
+            if(
+                result.places &&
+                result.places.length
+            ){
+
+                showGoogleSearchPlace(
+                    result.places[0]
+                        .displayName.text,
+
+                    result.places[0]
+
+                );
+
+                return;
+
+            }
+
+        }catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+
+
+    /*
+       Nothing found.
+    */
+
+    document.getElementById(
+        "placeGrid"
+    ).innerHTML = `
+
+        <div style="
+            grid-column:1/-1;
+            background:white;
+            padding:60px;
+            border-radius:20px;
+            text-align:center;
+        ">
+
+            <h2>
+                🔎 No place found
+            </h2>
+
+            <p style="
+                color:#777;
+                margin-top:10px;
+            ">
+
+                Try another city or destination.
+
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CLOSE SUGGESTIONS
+===================================================== */
+
+function closeSuggestions(){
+
+    document.getElementById(
+        "suggestions"
+    ).style.display =
+        "none";
+
+}
+
+
+function closeGuidePopup(){
+    const popup = document.getElementById('guidePopup');
+    if (popup) popup.style.display = 'none';
+    document.body.classList.remove('guide-open');
+}
+
+/* =====================================================
+   CLOSE POPUP
+===================================================== */
+
+function closePopup(id){
+
+    document.getElementById(
+        id
+    ).style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   ESCAPE JAVASCRIPT
+===================================================== */
+
+function escapeJS(text){
+
+    return String(text)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/\n/g," ");
+
+}
+
+
+/* =====================================================
+   CLICK OUTSIDE POPUP
+===================================================== */
+
+window.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.classList
+                .contains("popup")
+        ){
+
+            event.target.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+loadCities();
+
+initializeGoogle();
+
+</script>
+
+
+<section id="guide" class="feature-section">
+  <div class="section-heading">
+    <span class="eyebrow">GUIDE</span>
+    <h2>📖 History & Local Guide</h2>
+    <p>Learn about the selected destination before you visit.</p>
+  </div>
+  <div id="guideResult">
+    <div class="empty-feature">Choose “Guide & History” on a place card.</div>
+  </div>
+</section>
+
+
+<script id="travelguru-ready-fix">
+document.addEventListener("DOMContentLoaded", function () {
+    // Keep the stay area functional even when no Google API key is configured.
+    const citySelect = document.getElementById("citySelect");
+    if (citySelect && citySelect.value) {
+        selectedCity = citySelect.value;
+    }
+
+    // Ensure the buttons use real JS functions.
+    document.querySelectorAll("#stay .stay-actions button").forEach(function(btn) {
+        btn.style.pointerEvents = "auto";
+    });
+});
+</script>
+
+</body>
+</html>
+```
