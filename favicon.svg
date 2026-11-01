@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="tgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7a45" />
+      <stop offset="100%" stop-color="#ff5722" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd166" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="48" fill="#0f172a" stroke="url(#tgGrad)" stroke-width="3" />
+  <!-- Map Pin Body -->
+  <path d="M50 16 C35 16 23 28 23 43 C23 62 48 84 50 84 C52 84 77 62 77 43 C77 28 65 16 50 16 Z" fill="url(#tgGrad)" />
+  <!-- Compass Center Disc -->
+  <circle cx="50" cy="42" r="16" fill="#ffffff" />
+  <!-- Compass Star / Needle -->
+  <polygon points="50,30 54,42 50,38 46,42" fill="#0f172a" />
+  <polygon points="50,54 54,42 50,46 46,42" fill="url(#goldGrad)" />
+  <polygon points="38,42 50,46 46,42 50,38" fill="#0f172a" />
+  <polygon points="62,42 50,46 54,42 50,38" fill="url(#goldGrad)" />
+  <circle cx="50" cy="42" r="3" fill="#ff5722" />
+</svg>
