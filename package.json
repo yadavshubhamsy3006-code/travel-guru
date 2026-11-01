@@ -1,0 +1,29 @@
+{
+  "name": "travel-guru",
+  "version": "2.0.0",
+  "description": "TravelGuru - Comprehensive Real-World Incredible India Travel Planning Platform covering all 36 States & UTs, 1,080 Destinations, and 16,200 Attractions.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node validate_site.js && node test_server_logic.js",
+    "verify": "node verify_10_destinations.js"
+  },
+  "keywords": [
+    "travel",
+    "india",
+    "incredible-india",
+    "travel-planner",
+    "itinerary",
+    "tourism",
+    "hotels",
+    "transport",
+    "routes",
+    "attractions"
+  ],
+  "author": "TravelGuru",
+  "license": "MIT"
+}
